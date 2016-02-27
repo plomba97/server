@@ -35,10 +35,10 @@ router.post('/', function(req, res, next) {
         ariInit.getClient({}, 'testPeople')
             .then(function (client) {
                 //console.log(client);
-                var manager = callManager({ari:client, maxCalls: 10, appName: 'originate-test'});
+                var manager = callManager.createManager({ari:client, maxCalls: 10, appName: 'originate-test'});
                 _.each(phones, function(phone){
-                    call = Object.create(call).init({endPoint:'SIP/asterisk2/' + phone.number, priority: phone.priority, attempts: phone.attempts});
-                    manager.addCall(call);
+                    callToAdd = call.makeCall({endPoint:'SIP/asterisk2/' + phone.number, priority: phone.priority, attempts: phone.attempts});
+                    manager.addCall(callToAdd);
                 });
                 console.log(manager);
             });
