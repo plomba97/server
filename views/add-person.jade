@@ -1,0 +1,100 @@
+extends layout
+
+block content
+    include nav-bar
+    form.form-horizontal(role='form', method="post")
+        div.container
+            div.panel-group
+                div.panel.panel-primary
+                    div.panel-heading Добавяне на контакт
+                    div.panel-body
+                        div.row
+                            div.col-xs-5
+                                h4 Данни за лицето:
+                                div.form-group
+                                    label.col-sm-2.control-labe(for='title') Титла:*
+                                    div.col-sm-10
+                                        input.form-control(type='text', id='title', name='title' required)
+                                div.form-group
+                                    label.col-sm-2.control-labe(for='fName') Име:*
+                                    div.col-sm-10
+                                        input.form-control(type='text', id='fName', name='fName' required)
+                                div.form-group
+                                    label.col-sm-2.control-labe(for='sName') Презиме:
+                                    div.col-sm-10
+                                        input.form-control(type='text', id='sName', name='sName')
+                                div.form-group
+                                    label.col-sm-2.control-labe(for='lName') Фамилия:*
+                                    div.col-sm-10
+                                        input.form-control(type='text', id='lName', name='lName' required)
+                                div.form-group
+                                    label.col-sm-2.control-labe(for='jobTitle') Длъжност:
+                                    div.col-sm-10
+                                        input.form-control(type='text', id='jobTitle', name='jobTitle')
+                                div.form-group
+                                    label.col-sm-2.control-labe(for='email') E-mail:
+                                    div.col-sm-10
+                                        input.form-control(type='text', id='email', name='email')
+                            div.col-xs-5
+                                h4 Телефони за оповестяване:
+                                div.form-group
+                                    label.col-sm-1.control-labe(for='phone1') 1:*
+                                    div.col-sm-10
+                                        input.form-control(type='text', id='phone1', name='phone1' required)
+                                div.form-group
+                                    label.col-sm-1.control-labe(for='phone2') 2:
+                                    div.col-sm-10
+                                        input.form-control(type='text', id='phone2', name='phone2')
+                                div.form-group
+                                    label.col-sm-1.control-labe(for='phone3') 3:
+                                    div.col-sm-10
+                                        input.form-control(type='text', id='phone3', name='phone3')
+                                div.form-group
+                                    label.col-sm-1.control-labe(for='phone4') 4:
+                                    div.col-sm-10
+                                        input.form-control(type='text', id='phone4', name='phone4')
+                                div.form-group
+                                    label.col-sm-1.control-labe(for='phone5') 5:
+                                    div.col-sm-10
+                                        input.form-control(type='text', id='phone5', name='phone5')
+                                div.form-group
+                                    label.col-sm-1.control-labe(for='phone6') 6:
+                                    div.col-sm-10
+                                        input.form-control(type='text', id='phone6', name='phone6')
+
+                            div.col-xs-2
+                                h4 бр. опити:
+                                div.form-group
+                                    div.col-sm-10
+                                        select.form-control(id='phone1try', name='phone1try')
+                                            each val in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+                                                option= val
+                                div.form-group
+                                    div.col-sm-10
+                                        select.form-control(id='phone2try', name='phone2try')
+                                            each val in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+                                                option= val
+                                div.form-group
+                                    div.col-sm-10
+                                        select.form-control(id='phone3try', name='phone3try')
+                                            each val in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+                                                option= val
+                                div.form-group
+                                    div.col-sm-10
+                                        select.form-control(id='phone4try', name='phone4try')
+                                            each val in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+                                                option= val
+                                div.form-group
+                                    div.col-sm-10
+                                        select.form-control(id='phone5try', name='phone5try')
+                                            each val in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+                                                option= val
+                                div.form-group
+                                    div.col-sm-10
+                                        select.form-control(, id='phone6try', name='phone6try')
+                                            each val in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+                                                option= val
+                    div.panel-footer.panel-default
+                        div.row
+                            div.col-lg-2.col-md-2.col-sm-2.col-xs-2
+                                button.btn.btn-default.btn-primary.col-md-12(type='submit') Запази

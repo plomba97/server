@@ -1,0 +1,53 @@
+extends layout
+block content
+    script(type='text/javascript', src='../../javascripts/jquery-2.2.0.min.js')
+    script(type='text/javascript', src='../../javascripts/post-people-groups.js')
+    script(type='text/javascript', src='../../javascripts/common.js')
+    script(type='text/javascript', src='../../javascripts/datatables.min.js')
+    script(type='text/javascript', src='../../javascripts/dataTables.bootstrap.min.js')
+    link(rel='stylesheet', href='../../stylesheets/dataTables.bootstrap.min.css')
+    //link(rel='stylesheet', href='../../stylesheets/table.css')
+    link(rel='stylesheet', href='../../stylesheets/common.css')
+    include nav-bar
+    div.form-horizontal
+        div.container
+            div.panel-group
+                div.panel.panel-primary
+                    div.panel-heading Контакти
+                    div.panel-body
+                        div.row.margin-bot
+                            div.col-lg-9.col-md-9.col-sm-9.col-xs-9
+                                div.col-lg-3.col-md-3.col-sm-33.col-xs-3
+                                    label.control-label(for='group-select') Добавяне в група:
+                                div.col-lg-3.col-md-3.col-sm-3.col-xs-3
+                                    select.form-control(id='group-select', name='Group')
+                                        each group in groups
+                                            option(value= group.id)= group.name
+                                div.col-lg-2.col-md-2.col-sn-2.col-xs-2
+                                    button.btn.btn-default.btn-primary(id='add-button') Добави
+                        table.data-table.table.table-striped.table-bordered
+                            thead
+                                tr
+                                    th.checkbox-col
+                                    th.number-col №
+                                    th.title-col Титла
+                                    th.name-col Име
+                                    th.name-col Презиме
+                                    th.name-col Фамилия
+                                    th Длъжност
+                                    th Групи
+                            tbody
+                                each person, index in people
+                                    tr.person-info
+                                        td.text-center
+                                            input(type='checkbox' id= person.id)
+                                        td= index+1
+                                        td= person.title
+                                        td= person.firstName
+                                        td= person.secondName
+                                        td= person.lastName
+                                        td= person.jobTitle
+                                        if person.groups[0]
+                                            td= person.groups[0].name
+                                        else
+                                            td -

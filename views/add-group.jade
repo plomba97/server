@@ -1,0 +1,25 @@
+extends layout
+
+block content
+    include nav-bar
+    form.form-horizontal(role='form', method="post")
+        div.container
+            div.panel-group
+                div.panel.panel-primary
+                    div.panel-heading Добавяне на група
+                    div.panel-body
+                        div.row
+                            div.col-lg-5.col-md-5.col-sm-12.col-xs-12
+                                h4 Данни за групата:
+                                div.form-group
+                                    label.col-sm-2.control-labe(for='name') Име:*
+                                    div.col-sm-10
+                                        input.form-control(type='text', id='name', name='name' required)
+                                div.form-group
+                                    label.col-sm-2.control-labe(for='comment') Коментар:
+                                    div.col-sm-10
+                                        input.form-control(type='text', id='comment', name='comment')
+                    div.panel-footer.panel-default
+                        div.row
+                            div.col-lg-2.col-md-2.col-sm-2.col-xs-2
+                                button.btn.btn-default.btn-primary.col-md-12(type='submit') Запази
