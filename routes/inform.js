@@ -40,6 +40,7 @@ router.post('/', function(req, res, next) {
                     callToAdd = call.makeCall({endPoint:'SIP/asterisk2/' + phone.number, priority: phone.priority, attempts: phone.attempts});
                     manager.addCall(callToAdd);
                 });
+                manager.startCalls();
                 console.log(manager);
             });
         res.sendStatus(200);
