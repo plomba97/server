@@ -6,48 +6,64 @@ function Call(options){
 }
 
 Call.prototype.startCall = function (ari, appName) {
-    this.state = 'Waiting';
     var obj = this;
-    console.log('Waiting', this.priority);
-    console.log(ari);
-    ari.channels.originate({endpoint: this.endPoint, app: appName, appArgs: 'dealed'})
-        .then(function(channel){
-            obj.state = 'Dialing';
-            console.log('--call.js--channel successfuly originated:', channel.id);
-            channel.on('ChannelStateChange', function(event, channel1){
-                console.log('--call.js--channel state:',event.channel.state);
-                if(event.channel.state == 'Up'){
-                    obj.state = 'Answered';
-                    //console.log('--call.js--channel playing sound', channel1.id);
+    var promise = new Promise(function(resolve, reject){
+        obj.state = 'Waiting';
+
+        ari.channels.originate({endpoint: obj.endPoint, app: appName, appArgs: 'dealed'})
+            .then(function(channel){
+                console.log('--call.js--channel successfully originated:', channel.id);
+                obj.state = 'Dialing';
+
+                channel.on('ChannelStateChange', onStateChange);
+
+                channel.on('ChannelDestroyed', onDestroyed);
+
+                function onStateChange(event, channel){
+                    console.log('--call.js--channel state:',event.channel.state);
+                    if(event.channel.state == 'Up'){
+                        console.log('--call.js--channel playing sound', channel.id);
+                        obj.state = 'Answered';
+                        playBack(channel);
+                    }
+                }
+
+                function onDestroyed(event, channel){
+                    console.log('--call.js--channel destroyed:', channel.id);
+                    obj.state = 'Finished';
+                    resolve(obj.state);
+                }
+
+                function playBack(channel, recording){
                     var playback = ari.Playback();
                     channel.play({media: 'sound:demo-congrats'}, playback)
                         .then(function(playback){
                             obj.state='Playing';
                         })
                         .catch(function(err){
+                            reject(err);
                         });
                 }
+                //var count=0;
+                //var keysEntered=[];
+                //channel.on('ChannelDtmfReceived', function(event, channel1) {
+                //    console.log('--call.js--channel dtmf received:', event.digit,' ', channel1.id);
+                //    keysEntered.push(event.digit);
+                //    count++;
+                //    if(count==4){
+                //        console.log('the entered code is:', keysEntered);
+                //        count=0;
+                //        keysEntered=[];
+                //    }
+                //});
+            })
+            .catch(function(err){
+                console.log('--call.js--could not originate channel', err);
+                reject(err);
             });
-            channel.on('ChannelDestroyed', function(event, channel1){
-                obj.state = 'Finished';
-                console.log('--call.js--channel destroyed:', channel1.id);
-            });
-            //var count=0;
-            //var keysEntered=[];
-            //channel.on('ChannelDtmfReceived', function(event, channel1) {
-            //    console.log('--call.js--channel dtmf received:', event.digit,' ', channel1.id);
-            //    keysEntered.push(event.digit);
-            //    count++;
-            //    if(count==4){
-            //        console.log('the entered code is:', keysEntered);
-            //        count=0;
-            //        keysEntered=[];
-            //    }
-            //});
-        })
-        .catch(function(err){
-            console.log('--call.js--could not originate channel', err);
-        });
+    });
+
+    return promise;
 };
 
 function makeCall(options){
