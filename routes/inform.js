@@ -31,6 +31,7 @@ router.post('/', function(req, res, next) {
             });
         });
         console.log(phones);
+
         ariInit.getClient({}, 'testPeople')
             .then(function (client) {
                 //console.log(client);
@@ -43,6 +44,11 @@ router.post('/', function(req, res, next) {
             });
         res.sendStatus(200);
     });
+});
+
+//Route: /inform/callsData Method:GET - Renders groups
+router.get('/callsData', function(req, res, next) {
+    
 });
 
 

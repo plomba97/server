@@ -1,5 +1,6 @@
 var _ = require('underscore');
 
+var managers = {};
 
 function CallManager(options){
     this.ari = options.ari;;
@@ -10,7 +11,13 @@ function CallManager(options){
 }
 
 var createManager = function (options) {
-    return new CallManager(options);
+    if(Object.keys(managers).length !== 0){
+        return managers;
+    }
+    else{
+        managers = new CallManager(options);
+        return managers;
+    }
 };
 
 CallManager.prototype.checkCallState = function (endPointToCheck) {
@@ -22,7 +29,7 @@ CallManager.prototype.checkCallState = function (endPointToCheck) {
 };
 
 CallManager.prototype.addCall = function (callToAdd) {
-        if(!_.contains(this.calls, callToAdd)){
+        if(!_.findWhere(this.calls, {'endPoint':callToAdd.endPoint})){
             this.calls.push(callToAdd);
             return true;
         }
