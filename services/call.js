@@ -9,11 +9,10 @@ Call.prototype.startCall = function (ari, appName) {
     var obj = this;
     var promise = new Promise(function(resolve, reject){
         obj.state = 'Waiting';
-
+        var isAnswered = false;
         ari.channels.originate({endpoint: obj.endPoint, app: appName, appArgs: 'dealed'})
             .then(function(channel){
                 console.log('--call.js--channel successfully originated:', channel.id);
-                obj.state = 'Dialing';
 
                 channel.on('ChannelStateChange', onStateChange);
 
@@ -21,16 +20,25 @@ Call.prototype.startCall = function (ari, appName) {
 
                 function onStateChange(event, channel){
                     console.log('--call.js--channel state:',event.channel.state);
-                    if(event.channel.state == 'Up'){
+                    if(event.channel.state == 'Ringing'){
+                        obj.state = 'Dialing';
+                    }
+                    else if(event.channel.state == 'Up'){
                         console.log('--call.js--channel playing sound', channel.id);
                         obj.state = 'Answered';
-                        playBack(channel);
+                        isAnswered = true;
+                        playBack(channel); //TODO: implement custom recordings
                     }
                 }
 
                 function onDestroyed(event, channel){
                     console.log('--call.js--channel destroyed:', channel.id);
-                    obj.state = 'Finished';
+                    if(isAnswered){
+                        obj.state = 'FinishedAnswered';
+                    }
+                    else{
+                        obj.state = 'FinishedUnAnswered';
+                    }
                     resolve(obj.state);
                 }
 
