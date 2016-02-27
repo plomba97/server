@@ -23,7 +23,7 @@ for(var i=0;i<300;i++){
         jobTitle: jobTitles[Math.floor(Math.random()*jobTitles.length)],
         groups: []
     });
-    personToAdd.phones.push({number: Math.floor(Math.random()*999999), priority: 1, attempts: 5});
+    personToAdd.phones.push({number: String(Math.floor(Math.random()*999999)), priority: 1, attempts: 5});
     personToAdd.save();
 }
 

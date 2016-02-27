@@ -1,1 +1,1 @@
-mongod --dbpath "C:\Users\pac0\node-projects\server\data"
+mongod 
