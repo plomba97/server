@@ -35,7 +35,7 @@ router.post('/', function(req, res, next) {
         ariInit.getClient({}, 'testPeople')
             .then(function (client) {
                 //console.log(client);
-                var manager = callManager.createManager({ari:client, maxCalls: 10, appName: 'originate-test'});
+                var manager = callManager.createManager({ari:client, maxCalls: 10, appName: 'testPeople'});
                 _.each(phones, function(phone){
                     callToAdd = call.makeCall({endPoint:'SIP/asterisk2/' + phone.number, priority: phone.priority, attempts: phone.attempts});
                     manager.addCall(callToAdd);
@@ -49,7 +49,7 @@ router.post('/', function(req, res, next) {
 
 //Route: /inform/callsData Method:GET - Renders groups
 router.get('/callsData', function(req, res, next) {
-    var manager = callManager({ari:{}, maxCalls: 10, appName: 'originate-test'});
+    var manager = callManager({ari:{}, maxCalls: 10, appName: 'testPeople'});
     res.send(manager);
 });
 
