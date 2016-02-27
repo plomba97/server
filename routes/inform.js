@@ -52,5 +52,11 @@ router.get('/callsData', function(req, res, next) {
     res.send(manager);
 });
 
+//Route: /inform/callsData Method:GET - Renders groups
+router.get('/calls', function(req, res, next) {
+    res.render('current-calls', {});
+});
+
+
 
 module.exports = router;
