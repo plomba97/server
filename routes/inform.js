@@ -48,7 +48,7 @@ router.post('/', function(req, res, next) {
 
 //Route: /inform/callsData Method:GET - Renders groups
 router.get('/callsData', function(req, res, next) {
-    
+
 });
 
 

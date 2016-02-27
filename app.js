@@ -13,7 +13,7 @@ ariInit.getClient(ariConfig, 'testPeople')
         console.log('client connected to host: ', client._connection.host);
     })
     .catch(function(err){
-      console.log('asdasd');
+        console.log(err);
     });
 
 mongoose.connect('mongodb://localhost/testPeople');
