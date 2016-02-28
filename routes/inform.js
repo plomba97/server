@@ -41,7 +41,7 @@ router.post('/', function(req, res, next) {
                     manager.addCall(callToAdd);
                 });
                 manager.startCalls();
-                console.log(manager);
+                //console.log(manager);
             });
         res.sendStatus(200);
     });
