@@ -40,11 +40,11 @@ CallManager.prototype.startCalls = function () {
         var priority3 = _.filter(obj.calls, function(element){return (element.priority == 3)});
         var priority4 = _.filter(obj.calls, function(element){return (element.priority == 4)});
         var priority5 = _.filter(obj.calls, function(element){return (element.priority == 5)});
-    console.log(priority1[0]);
-    console.log(priority2[0]);
-    console.log(priority3[0]);
-    console.log(priority4[0]);
-    console.log(priority5[0]);
+    console.log(priority1);
+    console.log(priority2);
+    console.log(priority3);
+    console.log(priority4);
+    console.log(priority5);
         var intervalId = setInterval(function(){
             console.log(obj.getActiveCalls());
             if(obj.getActiveCalls() < obj.maxCalls && priority1[0]){
