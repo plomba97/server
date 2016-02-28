@@ -4,7 +4,7 @@ $(document).ready(function(){
         //console.log(template({}));
         var intervalId = setInterval(function(){
             $.get('/data/calls', function(data){
-                if(data == []){
+                if(data.calls == []){
                     clearInterval(intervalId);
                 }
                 else{
