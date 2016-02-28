@@ -14,19 +14,19 @@ Call.prototype.startCall = function (ari, appName) {
         ari.channels.originate({endpoint: obj.endPoint, app: appName, appArgs: 'dealed'})
             .then(function(channel){
                 //console.log('--call.js--channel successfully originated:', channel.id);
-                //console.log('originated');
+                console.log('originated');
 
                 channel.on('ChannelStateChange', onStateChange);
 
                 channel.on('ChannelDestroyed', onDestroyed);
 
                 function onStateChange(event, channel){
-                    //console.log('--call.js--channel state:',event.channel.state);
+                    console.log('--call.js--channel state:',event.channel.state);
                     if(event.channel.state == 'Ringing'){
                         obj.state = 'Dialing';
                     }
                     else if(event.channel.state == 'Up'){
-                        //console.log('--call.js--channel playing sound', channel.id);
+                        console.log('--call.js--channel playing sound', channel.id);
                         obj.state = 'Answered';
                         isAnswered = true;
                         playBack(channel); //TODO: implement custom recordings
@@ -34,7 +34,7 @@ Call.prototype.startCall = function (ari, appName) {
                 }
 
                 function onDestroyed(event, channel){
-                    //console.log('--call.js--channel destroyed:', channel.id);
+                    console.log('--call.js--channel destroyed:', channel.id);
                     if(isAnswered){
                         obj.state = 'FinishedAnswered';
                     }
