@@ -92,7 +92,7 @@ CallManager.prototype.startCalls = function () {
                     });
                 priority5.shift();
             }
-            else if(!(priority1[0] && priority2[0] && priority3[0] && priority4[0] && priority5[0])){
+            if(!(priority1[0] && priority2[0] && priority3[0] && priority4[0] && priority5[0])){
                 console.log('all empty');
                 clearInterval(intervalId);
             }
