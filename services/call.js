@@ -10,10 +10,11 @@ Call.prototype.startCall = function (ari, appName) {
     var promise = new Promise(function(resolve, reject){
         obj.state = 'Waiting';
         var isAnswered = false;
+        //console.log('trying to originate');
         ari.channels.originate({endpoint: obj.endPoint, app: appName, appArgs: 'dealed'})
             .then(function(channel){
                 //console.log('--call.js--channel successfully originated:', channel.id);
-                console.log('originated');
+                //console.log('originated');
 
                 channel.on('ChannelStateChange', onStateChange);
 

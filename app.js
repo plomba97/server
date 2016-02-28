@@ -6,7 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var ariInit = require('./ari/ari-init.js');
-var ariConfig = {url: 'http://127.0.0.1:8088', username: 'plomba97', password: 'plomba97'};
+var ariConfig = {url: 'http://192.168.0.97:8088', username: 'plomba97', password: 'plomba97'};
 
 ariInit.getClient(ariConfig, 'testPeople')
     .then(function (client) {
