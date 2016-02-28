@@ -3,6 +3,7 @@ $(document).ready(function(){
         var template=Handlebars.compile(hbtempl);
         //console.log(template({}));
         $.get('callsData', function(data){
+            $('.template-target').html(template(data));
             console.log(template(data));
         });
     }, 'html')

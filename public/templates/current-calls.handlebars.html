@@ -1,8 +1,12 @@
 <div>
     {{#each calls}}
-    <div>
-        <h2>{{endPoint}}</h2>
-        {{{state}}}
+    <div class="panel-group">
+        <div class="panel panel-default">
+            <div class="panel-heading">{{endPoint}}</div>
+            <div class="panel-body">
+                <p>{{{state}}}</p>
+            </div>
+        </div>
     </div>
     {{/each}}
 </div>
