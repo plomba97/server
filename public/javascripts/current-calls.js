@@ -4,7 +4,12 @@ $(document).ready(function(){
         //console.log(template({}));
         var intervalId = setInterval(function(){
             $.get('/data/calls', function(data){
-                $('.template-target').html(template(data));
+                if(data == []){
+                    clearInterval(intervalId);
+                }
+                else{
+                    $('.template-target').html(template(data));
+                }
             });
         }, 500);
     }, 'html')
