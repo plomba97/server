@@ -90,7 +90,7 @@ CallManager.prototype.startCalls = function () {
             }
             if(!priority1[0]){
                 console.log('all empty');
-                managers = {};
+                //managers = {};
                 clearInterval(intervalId);
             }
         }, 80);
