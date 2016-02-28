@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="63278f11-8b9e-489c-94c3-d93d248b8edb" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/javascripts/current-calls.js" afterPath="$PROJECT_DIR$/public/javascripts/current-calls.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/templates/current-calls.handlebars.html" afterPath="$PROJECT_DIR$/public/templates/current-calls.handlebars.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/inform.js" afterPath="$PROJECT_DIR$/routes/inform.js" />
     </list>
     <ignored path="server.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -24,6 +24,16 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="inform.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/routes/inform.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="34" column="43" selection-start-line="34" selection-start-column="43" selection-end-line="34" selection-end-column="43" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="current-calls.jade" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/current-calls.jade">
           <provider selected="true" editor-type-id="text-editor">
@@ -44,16 +54,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ari-init.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ari/ari-init.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="19" column="37" selection-start-line="19" selection-start-column="37" selection-end-line="19" selection-end-column="37" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="inform-screen.jade" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/inform-screen.jade">
           <provider selected="true" editor-type-id="text-editor">
@@ -67,8 +67,8 @@
       <file leaf-file-name="current-calls.handlebars.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/public/templates/current-calls.handlebars.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.16209774">
-              <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.10131109">
+              <caret line="5" column="10" selection-start-line="5" selection-start-column="10" selection-end-line="5" selection-end-column="10" />
               <folding />
             </state>
           </provider>
@@ -174,13 +174,13 @@
         <option value="$PROJECT_DIR$/services/call.js" />
         <option value="$PROJECT_DIR$/services/call-manager.js" />
         <option value="$PROJECT_DIR$/services/calls-manager.js" />
-        <option value="$PROJECT_DIR$/routes/inform.js" />
         <option value="$PROJECT_DIR$/public/javascripts/common.js" />
         <option value="$PROJECT_DIR$/public/javascripts/user-list.js" />
         <option value="$PROJECT_DIR$/views/user-list.jade" />
         <option value="$PROJECT_DIR$/views/inform-screen.jade" />
         <option value="$PROJECT_DIR$/views/current-calls.jade" />
         <option value="$PROJECT_DIR$/public/javascripts/current-calls.js" />
+        <option value="$PROJECT_DIR$/routes/inform.js" />
         <option value="$PROJECT_DIR$/public/templates/current-calls.handlebars.html" />
       </list>
     </option>
@@ -786,14 +786,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/inform.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="57" column="47" selection-start-line="57" selection-start-column="47" selection-end-line="57" selection-end-column="47" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/ari/ari-init.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -868,10 +860,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/routes/inform.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="34" column="43" selection-start-line="34" selection-start-column="43" selection-end-line="34" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/public/templates/current-calls.handlebars.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.16209774">
-          <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.10131109">
+          <caret line="5" column="10" selection-start-line="5" selection-start-column="10" selection-end-line="5" selection-end-column="10" />
           <folding />
         </state>
       </provider>
