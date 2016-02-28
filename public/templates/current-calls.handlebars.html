@@ -1,8 +1,13 @@
 <div>
     {{#each calls}}
     <div class="container call-info">
+
         <div class="panel-group">
+            {{#if state == 'Waiting'}}
             <div class="panel panel-default">
+            {{else}}
+            <div class="panel panel-primary">
+            {{/if}}
                 <div class="panel-heading">{{endPoint}}</div>
                 <div class="panel-body">
                     <p>{{{state}}}</p>

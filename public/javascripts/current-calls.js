@@ -5,8 +5,7 @@ $(document).ready(function(){
         var intervalId = setInterval(function(){
             $.get('/data/calls', function(data){
                 $('.template-target').html(template(data));
-                console.log(template(data));
             });
-        }, 1000);
+        }, 500);
     }, 'html')
 });
