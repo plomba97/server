@@ -6,6 +6,6 @@ $(document).ready(function(){
             $.get('/data/calls', function(data){
                 $('.template-target').html(template(data));
             });
-        }, 500);
+        }, 2);
     }, 'html')
 });
