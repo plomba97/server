@@ -42,7 +42,7 @@ CallManager.prototype.startCalls = function () {
         var priority4 = _.filter(obj.calls, function(element){return (element.priority == 4)});
         var priority5 = _.filter(obj.calls, function(element){return (element.priority == 5)});
         var intervalId = setInterval(function(){
-            console.log(obj.getActiveCalls());
+            //console.log(obj.getActiveCalls());
             if(obj.getActiveCalls() < obj.maxCalls && priority1[0]){
                 priority1[0].startCall(obj.ari, obj.appName)
                     .then(function(state){
@@ -95,7 +95,6 @@ CallManager.prototype.startCalls = function () {
             }
         }, 80);
     }
-
 };
 
 module.exports = {
