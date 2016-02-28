@@ -42,8 +42,8 @@ router.post('/', function(req, res, next) {
                 });
                 manager.startCalls();
                 //console.log(manager);
+                res.sendStatus(200);
             });
-        res.sendStatus(200);
     });
 });
 
