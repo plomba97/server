@@ -93,7 +93,7 @@ CallManager.prototype.startCalls = function () {
                 managers = {};
                 clearInterval(intervalId);
             }
-        }, 60);
+        }, 80);
     }
 
 };
