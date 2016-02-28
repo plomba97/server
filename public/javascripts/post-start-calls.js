@@ -18,7 +18,7 @@ $(document).ready(function(){
             data : JSON.stringify(object),
             success: function(data, textStatus, jqXHR)
             {
-                //location.reload();
+                window.location.replace("/calls");
             },
             error: function (jqXHR, textStatus, errorThrown)
             {
