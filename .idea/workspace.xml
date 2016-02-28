@@ -37,7 +37,7 @@
         <entry file="file://$PROJECT_DIR$/public/javascripts/post-start-calls.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.3926097">
-              <caret line="20" column="41" selection-start-line="20" selection-start-column="41" selection-end-line="20" selection-end-column="41" />
+              <caret line="20" column="18" selection-start-line="20" selection-start-column="18" selection-end-line="20" selection-end-column="18" />
               <folding />
             </state>
           </provider>
@@ -868,7 +868,7 @@
     <entry file="file://$PROJECT_DIR$/public/javascripts/post-start-calls.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.3926097">
-          <caret line="20" column="41" selection-start-line="20" selection-start-column="41" selection-end-line="20" selection-end-column="41" />
+          <caret line="20" column="18" selection-start-line="20" selection-start-column="18" selection-end-line="20" selection-end-column="18" />
           <folding />
         </state>
       </provider>
