@@ -5,6 +5,8 @@ block content
     script(type='text/javascript', src='../../javascripts/common.js')
     script(type='text/javascript', src='../../javascripts/datatables.min.js')
     script(type='text/javascript', src='../../javascripts/dataTables.bootstrap.min.js')
+    script(type='text/javascript', src='../../javascripts/user-list.js')
+    script(type='text/javascript', src='../../javascripts/jquery.popupoverlay.js')
     link(rel='stylesheet', href='../../stylesheets/dataTables.bootstrap.min.css')
     //link(rel='stylesheet', href='../../stylesheets/table.css')
     link(rel='stylesheet', href='../../stylesheets/common.css')
@@ -25,7 +27,7 @@ block content
                                             option(value= group.id)= group.name
                                 div.col-lg-2.col-md-2.col-sn-2.col-xs-2
                                     button.btn.btn-default.btn-primary(id='add-button') Добави
-                        table.data-table.table.table-striped.table-bordered
+                        table.data-table.table.table-striped.table-bordered.table-hover
                             thead
                                 tr
                                     th.checkbox-col
@@ -39,15 +41,15 @@ block content
                             tbody
                                 each person, index in people
                                     tr.person-info
-                                        td.text-center
+                                        td.text-center.checkbox-container
                                             input(type='checkbox' id= person.id)
-                                        td= index+1
-                                        td= person.title
-                                        td= person.firstName
-                                        td= person.secondName
-                                        td= person.lastName
-                                        td= person.jobTitle
+                                        td.person-details= index+1
+                                        td.person-details= person.title
+                                        td.person-details= person.firstName
+                                        td.person-details= person.secondName
+                                        td.person-details= person.lastName
+                                        td.person-details= person.jobTitle
                                         if person.groups[0]
-                                            td= person.groups[0].name
+                                            td.person-details= person.groups[0].name
                                         else
-                                            td -
+                                            td.person-details -

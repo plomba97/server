@@ -27,10 +27,10 @@ block content
                                     button.btn.btn-default.btn-primary(id='start-button') Оповести
                             div.col-lg-3.col-md-3.col-sm-3.col-xs-3
                                 input.form-control(type='text', id='filter', name='filter', placeholder='Филтър...')
-                        table.data-table.table.table-striped.table-bordered
+                        table.data-table.table.table-striped.table-bordered.table-hover
                             thead
                                 tr
-                                    th.col-xs-1
+                                    th.checkbox-container.checkbox-col
                                     th №
                                     th.col-xs-4 Име
                                     th Коментар
@@ -38,7 +38,7 @@ block content
                             tbody
                                 each group,index in groups
                                     tr
-                                        td.text-center
+                                        td.text-center.checkbox-container
                                             input(type='checkbox' id= group.id)
                                         td= index+1
                                         td= group.name
