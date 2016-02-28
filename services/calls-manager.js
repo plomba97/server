@@ -92,10 +92,14 @@ CallManager.prototype.startCalls = function () {
                     });
                 priority5.shift();
             }
-            if(!(priority1[0] && priority2[0] && priority3[0] && priority4[0] && priority5[0])){
-                console.log('all empty');
-                clearInterval(intervalId);
-            }
+            //if(!(priority1[0] && priority2[0] && priority3[0] && priority4[0] && priority5[0])){
+                console.log(priority1[0]);
+                console.log(priority2[0]);
+                console.log(priority3[0]);
+                console.log(priority4[0]);
+                console.log(priority5[0]);
+                //clearInterval(intervalId);
+            //}
         }, 60);
 };
 
