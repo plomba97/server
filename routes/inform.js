@@ -51,7 +51,7 @@ router.post('/', function(req, res, next) {
 router.get('/callsData', function(req, res, next) {
     var calls = callManager.createManager({ari:{}, maxCalls: 10, appName: 'testPeople'}).calls;
     console.log({calls: calls});
-    res.send(calls);
+    res.send({calls: calls});
 });
 
 //Route: /inform/callsData Method:GET - Renders groups

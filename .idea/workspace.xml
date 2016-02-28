@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="63278f11-8b9e-489c-94c3-d93d248b8edb" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/templates/current-calls.handlebars.html" afterPath="$PROJECT_DIR$/public/templates/current-calls.handlebars.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/inform.js" afterPath="$PROJECT_DIR$/routes/inform.js" />
     </list>
     <ignored path="server.iws" />
@@ -24,11 +23,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="inform.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="inform.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/routes/inform.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="34" column="43" selection-start-line="34" selection-start-column="43" selection-end-line="34" selection-end-column="43" />
+            <state vertical-scroll-proportion="0.66628176">
+              <caret line="53" column="27" selection-start-line="53" selection-start-column="27" selection-end-line="53" selection-end-column="27" />
               <folding />
             </state>
           </provider>
@@ -64,10 +63,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="current-calls.handlebars.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="current-calls.handlebars.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/templates/current-calls.handlebars.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.10131109">
+            <state vertical-scroll-proportion="-3.148148">
               <caret line="5" column="10" selection-start-line="5" selection-start-column="10" selection-end-line="5" selection-end-column="10" />
               <folding />
             </state>
@@ -180,8 +179,8 @@
         <option value="$PROJECT_DIR$/views/inform-screen.jade" />
         <option value="$PROJECT_DIR$/views/current-calls.jade" />
         <option value="$PROJECT_DIR$/public/javascripts/current-calls.js" />
-        <option value="$PROJECT_DIR$/routes/inform.js" />
         <option value="$PROJECT_DIR$/public/templates/current-calls.handlebars.html" />
+        <option value="$PROJECT_DIR$/routes/inform.js" />
       </list>
     </option>
   </component>
@@ -860,18 +859,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/inform.js">
+    <entry file="file://$PROJECT_DIR$/public/templates/current-calls.handlebars.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="34" column="43" selection-start-line="34" selection-start-column="43" selection-end-line="34" selection-end-column="43" />
+        <state vertical-scroll-proportion="-3.148148">
+          <caret line="5" column="10" selection-start-line="5" selection-start-column="10" selection-end-line="5" selection-end-column="10" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/templates/current-calls.handlebars.html">
+    <entry file="file://$PROJECT_DIR$/routes/inform.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.10131109">
-          <caret line="5" column="10" selection-start-line="5" selection-start-column="10" selection-end-line="5" selection-end-column="10" />
+        <state vertical-scroll-proportion="0.66628176">
+          <caret line="53" column="27" selection-start-line="53" selection-start-column="27" selection-end-line="53" selection-end-column="27" />
           <folding />
         </state>
       </provider>
