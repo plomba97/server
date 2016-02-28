@@ -45,7 +45,7 @@ Call.prototype.startCall = function (ari, appName) {
 
                 function playBack(channel, recording){
                     var playback = ari.Playback();
-                    //channel.play({media: 'sound:demo-congrats'}, playback)
+                    channel.play({media: 'sound:demo-congrats'}, playback)
                         .then(function(playback){
                             obj.state='Playing';
                         })
