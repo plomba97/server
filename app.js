@@ -24,6 +24,7 @@ var users = require('./routes/users');
 var people = require('./routes/people');
 var inform = require('./routes/inform');
 var groups = require('./routes/groups');
+var data = require('./routes/data');
 
 var app = express();
 
@@ -45,6 +46,7 @@ app.use('/users', users);
 app.use('/people', people);
 app.use('/inform', inform);
 app.use('/groups', groups);
+app.use('/data', data);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
