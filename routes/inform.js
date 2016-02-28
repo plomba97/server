@@ -58,6 +58,4 @@ router.get('/calls', function(req, res, next) {
     res.render('current-calls', {});
 });
 
-
-
 module.exports = router;
