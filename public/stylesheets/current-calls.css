@@ -2,3 +2,53 @@
     width:20%;
     float: left;
 }
+th.number-col{
+    width: 3%;
+}
+th.phone-col{
+    width: 10%;
+}
+th.name-col{
+    width: 17%;
+}
+th.status-light-col{
+    width:3%;
+}
+th.status-col{
+    width: 20%;
+}
+.circle-green {
+    border-radius: 50%;
+    width: 16px;
+    height: 16px;
+    margin: auto;
+    background-color: #66BB6A;
+}
+.circle-red {
+    border-radius: 50%;
+    width: 16px;
+    height: 16px;
+    margin: auto;
+    background-color: #EF5350;
+}
+.circle-yellow {
+     border-radius: 50%;
+     width: 16px;
+     height: 16px;
+     margin: auto;
+     background-color: #FFEE58;
+}
+.circle-grey {
+    border-radius: 50%;
+    width: 16px;
+    height: 16px;
+    margin: auto;
+    background-color: #BDBDBD;
+}
+.circle-blue {
+    border-radius: 50%;
+    width: 16px;
+    height: 16px;
+    margin: auto;
+    background-color: #5C6BC0;
+}
