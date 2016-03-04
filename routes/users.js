@@ -33,7 +33,7 @@ router.get('/login', function(req, res, next) {
     res.render('login-form', {signedUser: req.user, title: 'Test' });
 });
 
-router.post('/login', passport.authenticate('local'), function(req, res) {
+router.post('/login', passport.authenticate('local', { failureRedirect: '/users/login' }), function(req, res) {
     res.redirect('/');
 });
 

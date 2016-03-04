@@ -1,3 +1,7 @@
+body{
+    background-color: #f0f0f0;
+}
+
 .margin-bot{
     margin-bottom: 10px;
     padding-bottom: 10px;
@@ -6,6 +10,7 @@
 .login-form{
     width: 400px;
 }
+
 .container > .panel-group > .panel{
     border-color: rgba(34, 34, 34, 1);
 }
