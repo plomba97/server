@@ -7,7 +7,7 @@
     width: 400px;
 }
 .container > .panel-group > .panel{
-    border-color: rgba(0, 0, 0, 0.75);
+    border-color: rgba(34, 34, 34, 1);
 }
 
 .container > .panel-group > .panel > .panel-heading-black {

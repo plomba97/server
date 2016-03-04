@@ -2,4 +2,8 @@ extends layout
 
 block content
   include nav-bar
-  h1= title
+  div.container.text-center
+    if signedUser
+        h2 Текущ потребител:  #{signedUser.username}
+    else
+        h2 Mоля влзезте в профила си!
