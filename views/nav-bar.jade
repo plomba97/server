@@ -3,14 +3,45 @@ nav.navbar.navbar-default
         div.navbar-header
             a.navbar-brand(href='/') Начало
         div.collapse.navbar-collapse
-            ul.nav.navbar-nav
-                li
-                    a(href='/people') Контакти
-                li
-                    a(href='/people/add') Добавяне на Контакт
-                li
-                    a(href='/groups/add') Добавяне на Група
-                li
-                    a(href='/inform') Оповестяване
-                li
-                    a(href='/inform/calls') Текущо оповестяване
+            if signedUser
+                ul.nav.navbar-nav
+                    li.dropdown
+                        a.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false') Контакти
+                            span.caret
+                        ul.dropdown-menu
+                            li
+                                a(href='/people') Всички контакти
+                            li
+                                a(href='/people/add') Добавяне на контакт
+                    li.dropdown
+                        a.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false') Групи
+                            span.caret
+                        ul.dropdown-menu
+                            li
+                                a(href='/groups/add') Добавяне на група
+                    li.dropdown
+                        a.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false') Оповестяване
+                            span.caret
+                        ul.dropdown-menu
+                            li
+                                a(href='/inform') Стартиране на оповестяване
+                            li
+                                a(href='/inform/calls') Текущо оповестяване
+                    li.dropdown
+                        a.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false') Администратор
+                            span.caret
+                        ul.dropdown-menu
+                            li
+                                a(href='/users/register') Всички потребители
+                            li
+                                a(href='/users/register') Добавяне на потребител
+                if signedUser
+                    ul.navbar-right.nav.navbar-nav
+                        li.navbar-link
+                            a(href="#")= signedUser.username
+                        li.navbar-link
+                            a(href="/users/logout") Излез
+            else
+                ul.navbar-right.nav.navbar-nav
+                    li.navbar-link
+                        a(href="/users/login") Влез

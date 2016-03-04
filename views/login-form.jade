@@ -1,0 +1,23 @@
+extends layout
+
+block content
+    link(rel='stylesheet', href='../../stylesheets/login-form.css')
+    include nav-bar
+    div.container.login-form
+        div.panel-group
+            div.panel.panel-primary
+                div.panel-heading Вход
+                div.panel-body
+                    img.profile-img-card(id="profile-img" src='//ssl.gstatic.com/accounts/ui/avatar_2x.png')
+                    p.profile-name-card(id="profile-name")
+                    form.form-signin(role='form'  method="post")
+                        span.reauth-email(id="reauth-email")
+                        input.form-control(type="email" name='username' id="inputEmail" placeholder="Email адрес" required autofocus)
+                        input.form-control(type="password" name='password' id="inputPassword" placeholder="Парола" required)
+                        div.checkbox(id="remember")
+                            label
+                                input(type="checkbox" value="remember-me")
+                                span Запомни ме
+                        button.btn.btn-lg.btn-primary.btn-block.btn-signin(type="submit") Влез
+
+

@@ -1,5 +1,7 @@
 var _ = require('underscore');
 var express = require('express');
+var passport = require('passport');
+var Account = require('../data-models/account-model');
 var Person = require('../data-models/person-model.js');
 var Group = require('../data-models/group-model.js');
 var router = express.Router();
@@ -7,16 +9,23 @@ var ariInit = require('../ari/ari-init.js');
 var call = require('../services/call.js');
 var callManager = require('../services/calls-manager');
 
+function checkIfAuthenticated(req, res, next){
+    if(req.isAuthenticated()){
+        next();
+    }else{
+        res.redirect("/users/login");
+    }
+}
 //Route: /inform Method:GET - Renders groups
-router.get('/', function(req, res, next) {
+router.get('/', checkIfAuthenticated, function(req, res, next) {
     Group.find().exec(function(err, groups) {
-
-        res.render('inform-screen', { groups: groups });
+        console.log(req.user);
+        res.render('inform-screen', {signedUser: req.user, groups: groups });
     });
 });
 
 //Route: /inform Method:Post - Renders groups
-router.post('/', function(req, res, next) {
+router.post('/', checkIfAuthenticated, function(req, res, next) {
     console.log(req.body);
     var recordingId = req.body.recording;
     var groupIds = req.body.ids;
@@ -41,8 +50,8 @@ router.post('/', function(req, res, next) {
 });
 
 //Route: /inform/callsData Method:GET - Renders groups
-router.get('/calls', function(req, res, next) {
-    res.render('current-calls', {});
+router.get('/calls', checkIfAuthenticated, function(req, res, next) {
+    res.render('current-calls', {signedUser: req.user});
 });
 
 module.exports = router;
