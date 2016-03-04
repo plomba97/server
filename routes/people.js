@@ -14,7 +14,7 @@ function checkIfAuthenticated(req, res, next){
 router.get('/', checkIfAuthenticated, function(req, res, next) {
     Person.find().populate('groups').exec(function(err, data) {
         Group.find().exec(function(err, groups) {
-            res.render('user-list', {signedUser: req.user, people: data, groups: groups });
+            res.render('people-list', {signedUser: req.user, people: data, groups: groups });
         });
     });
 });

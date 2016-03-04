@@ -6,3 +6,30 @@
 .login-form{
     width: 400px;
 }
+.container > .panel-group > .panel{
+    border-color: rgba(0, 0, 0, 0.75);
+}
+
+.container > .panel-group > .panel > .panel-heading-black {
+    color: #fff;
+    background-color: rgba(34, 34, 34, 1);
+    border-color: rgba(34, 34, 34, 1);
+}
+
+.btn-custom {
+    background-color: rgba(34, 34, 34, 1) !important;
+    border-color: rgba(34, 34, 34, 1);
+    color: #fff !important;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.33);
+}
+
+.pagination > .paginate_button.active > a{
+    background-color: rgba(34, 34, 34, 1) !important;
+    border-color: rgba(34, 34, 34, 1);!important;
+    color: #fff !important;!important;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.33);!important;
+}
+
+.pagination > .paginate_button > a{
+    color: #000;
+}

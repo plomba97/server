@@ -5,16 +5,13 @@ block content
     script(type='text/javascript', src='../../javascripts/datatables.min.js')
     script(type='text/javascript', src='../../javascripts/dataTables.bootstrap.min.js')
     script(type='text/javascript', src='../../javascripts/user-list.js')
-    script(type='text/javascript', src='../../javascripts/jquery.popupoverlay.js')
     link(rel='stylesheet', href='../../stylesheets/dataTables.bootstrap.min.css')
-    //link(rel='stylesheet', href='../../stylesheets/table.css')
-    link(rel='stylesheet', href='../../stylesheets/common.css')
     include nav-bar
     div.form-horizontal
         div.container
             div.panel-group
                 div.panel.panel-primary
-                    div.panel-heading Контакти
+                    div.panel-heading.panel-heading-black Контакти
                     div.panel-body
                         div.row.margin-bot
                             div.col-lg-9.col-md-9.col-sm-9.col-xs-9
@@ -25,7 +22,7 @@ block content
                                         each group in groups
                                             option(value= group.id)= group.name
                                 div.col-lg-2.col-md-2.col-sn-2.col-xs-2
-                                    button.btn.btn-default.btn-primary(id='add-button') Добави
+                                    button.btn.btn-default.btn-primary.btn-custom(id='add-button') Добави
                         table.data-table.table.table-striped.table-bordered.table-hover
                             thead
                                 tr
