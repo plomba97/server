@@ -2,7 +2,7 @@ extends layout
 
 block content
   include nav-bar
-  div.container.text-center
+  div.container.text-center.well
     if signedUser
         h2 Текущ потребител:  #{signedUser.username}
     else
