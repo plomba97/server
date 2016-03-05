@@ -1,12 +1,16 @@
 nav.navbar.navbar-inverse
     div.container-fluid
         div.navbar-header
-            a.navbar-brand(href='/') Начало
+            a.navbar-brand(href='/')
+                i.glyphicon.glyphicon-home
+                span Начало
         div.collapse.navbar-collapse
             if signedUser
                 ul.nav.navbar-nav
                     li.dropdown
-                        a.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false') Контакти
+                        a.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false')
+                            i.glyphicon.glyphicon-book
+                            span Контакти
                             span.caret
                         ul.dropdown-menu
                             li
@@ -14,13 +18,17 @@ nav.navbar.navbar-inverse
                             li
                                 a(href='/people/add') Добавяне на контакт
                     li.dropdown
-                        a.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false') Групи
+                        a.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false')
+                            i.glyphicon.glyphicon-flag
+                            span Групи
                             span.caret
                         ul.dropdown-menu
                             li
                                 a(href='/groups/add') Добавяне на група
                     li.dropdown
-                        a.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false') Оповестяване
+                        a.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false')
+                            i.glyphicon.glyphicon-bullhorn
+                            span Оповестяване
                             span.caret
                         ul.dropdown-menu
                             li
@@ -28,7 +36,9 @@ nav.navbar.navbar-inverse
                             li
                                 a(href='/inform/calls') Текущо оповестяване
                     li.dropdown
-                        a.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false') Администратор
+                        a.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false')
+                            i.glyphicon.glyphicon-cog
+                            span Администратор
                             span.caret
                         ul.dropdown-menu
                             li
@@ -40,8 +50,12 @@ nav.navbar.navbar-inverse
                         li.navbar-link
                             a(href="#")= signedUser.username
                         li.navbar-link
-                            a(href="/users/logout") Излез
+                            a(href="/users/logout")
+                                i.glyphicon.glyphicon-log-out
+                                span Излез
             else
                 ul.navbar-right.nav.navbar-nav
                     li.navbar-link
-                        a(href="/users/login") Влез
+                        a(href="/users/login")
+                            i.glyphicon.glyphicon-user
+                            span Влез

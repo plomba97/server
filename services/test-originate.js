@@ -1,6 +1,6 @@
 var client = require('ari-client');
-var call = require('./call.js');
-var callManager = require('./calls-manager.js');
+var call = require('./asterisk/call.js');
+var callManager = require('./asterisk/calls-manager.js');
 
 
 client.connect('http://127.0.0.1:8088', 'plomba97', 'plomba97')

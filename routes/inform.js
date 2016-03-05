@@ -6,8 +6,8 @@ var Person = require('../data-models/person-model.js');
 var Group = require('../data-models/group-model.js');
 var router = express.Router();
 var ariInit = require('../ari/ari-init.js');
-var call = require('../services/call.js');
-var callManager = require('../services/calls-manager');
+var call = require('../services/asterisk/call.js');
+var callManager = require('../services/asterisk/calls-manager');
 
 function checkIfAuthenticated(req, res, next){
     if(req.isAuthenticated()){

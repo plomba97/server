@@ -38,3 +38,7 @@ body{
 .pagination > .paginate_button > a{
     color: #000;
 }
+
+.navbar span{
+    margin-left:5px;
+}
