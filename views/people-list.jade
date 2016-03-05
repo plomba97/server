@@ -1,12 +1,25 @@
 extends layout
 block content
-    script(type='text/javascript', src='../../javascripts/post-people-groups.js')
-    script(type='text/javascript', src='../../javascripts/common.js')
     script(type='text/javascript', src='../../javascripts/datatables.min.js')
     script(type='text/javascript', src='../../javascripts/dataTables.bootstrap.min.js')
+    //script(type='text/javascript', src='../../javascripts/bootstrap.js')
     script(type='text/javascript', src='../../javascripts/user-list.js')
+    script(type='text/javascript', src='../../javascripts/post-people-groups.js')
+    script(type='text/javascript', src='../../javascripts/common.js')
+
     link(rel='stylesheet', href='../../stylesheets/dataTables.bootstrap.min.css')
     include nav-bar
+    #infoModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel')
+        .modal-dialog(role='document')
+            .modal-content
+                .modal-header
+                    button.close(type='button', data-dismiss='modal', aria-label='Close')
+                        span(aria-hidden='true') ×
+                    h4#myModalLabel.modal-title Информация за контакта:
+                .modal-body
+                    p User info
+                .modal-footer
+                    button.btn.btn-default(type='button', data-dismiss='modal') Затвори
     div.form-horizontal
         div.container
             div.panel-group

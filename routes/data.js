@@ -11,5 +11,9 @@ router.get('/calls', function(req, res, next) {
     res.render('current-calls-data', {calls: calls});
 });
 
+router.get('/personInfo/:id', function(req, res, next) {
+    res.render('current-calls-data', {calls: calls});
+});
+
 module.exports = router;
 
