@@ -15,14 +15,14 @@ router.get('/calls', function(req, res, next) {
 router.get('/personInfo/:id', function(req, res, next) {
     var personId = req.params.id;
     Person.findOne({_id: personId}).populate('groups').exec(function(err, data) {
-        res.render('person-info', {person: data});
+        res.render('people/person-info', {person: data});
     });
 });
 
 router.get('/groupInfo/:id', function(req, res, next) {
     var groupId = req.params.id;
     Group.findOne({_id: groupId}).populate('people').exec(function(err, data) {
-        res.render('group-info', {group: data});
+        res.render('groups/group-info', {group: data});
     });
 });
 

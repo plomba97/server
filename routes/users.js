@@ -11,16 +11,16 @@ function checkIfAuthenticated(req, res, next){
     }
 }
 
-router.get('/register', function(req, res) {
-    res.render('register-form', {signedUser: req.user});
+router.get('/register', checkIfAuthenticated, function(req, res) {
+    res.render('users/register-form', {signedUser: req.user});
 });
 
-router.post('/register', function(req, res) {
-    Account.register(new Account({ username : req.body.username }), req.body.password, function(err, account) {
+router.post('/register', checkIfAuthenticated, function(req, res) {
+    Account.register(new Account({ username : req.body.username, firstName: req.body.firstName, secondName: req.body.secondName, lastName: req.body.lastName, role: req.body.role }), req.body.password, function(err, account) {
         if (err) {
             console.log(err);
 
-            return res.render('register-form', { signedUser: req.user, error : err.message });
+            return res.render('users/register-form', { signedUser: req.user, error : err.message });
         }
 
         passport.authenticate('local')(req, res, function () {
@@ -30,7 +30,7 @@ router.post('/register', function(req, res) {
 });
 
 router.get('/login', function(req, res, next) {
-    res.render('login-form', {signedUser: req.user, title: 'Test' });
+    res.render('users/login-form', {signedUser: req.user, title: 'Test' });
 });
 
 router.post('/login', passport.authenticate('local', { failureRedirect: '/users/login' }), function(req, res) {
@@ -40,6 +40,14 @@ router.post('/login', passport.authenticate('local', { failureRedirect: '/users/
 router.get('/logout', function(req, res) {
     req.logout();
     res.redirect('/');
+});
+
+router.get('/userList', checkIfAuthenticated, function(req, res, next) {
+    Account.find().exec(function(err, data) {
+        console.log(data);
+        res.render('users/users-list', {signedUser: req.user, users: data });
+    });
+
 });
 
 module.exports = router;

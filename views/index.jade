@@ -1,7 +1,7 @@
-extends layout
+extends partials/layout
 
 block content
-  include nav-bar
+  include partials/nav-bar
   div.container.text-center.well
     if signedUser
         h2 Текущ потребител:  #{signedUser.username}

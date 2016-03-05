@@ -20,7 +20,7 @@ function checkIfAuthenticated(req, res, next){
 router.get('/', checkIfAuthenticated, function(req, res, next) {
     Group.find().exec(function(err, groups) {
         console.log(req.user);
-        res.render('inform-screen', {signedUser: req.user, groups: groups });
+        res.render('inform/inform-screen', {signedUser: req.user, groups: groups });
     });
 });
 
@@ -51,7 +51,7 @@ router.post('/', checkIfAuthenticated, function(req, res, next) {
 
 //Route: /inform/callsData Method:GET - Renders groups
 router.get('/calls', checkIfAuthenticated, function(req, res, next) {
-    res.render('current-calls', {signedUser: req.user});
+    res.render('inform/current-calls', {signedUser: req.user});
 });
 
 module.exports = router;

@@ -1,10 +1,10 @@
-extends layout
+extends ../partials/layout
 block content
     script(type='text/javascript', src='../../javascripts/common.js')
     script(type='text/javascript', src='../../javascripts/post-start-calls.js')
     script(type='text/javascript', src='../../javascripts/dataTables.bootstrap.min.js')
     link(rel='stylesheet', href='../../stylesheets/dataTables.bootstrap.min.css')
-    include nav-bar
+    include ../partials/nav-bar
     #infoModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel')
         .modal-dialog(role='document')
             .modal-content

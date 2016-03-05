@@ -1,0 +1,27 @@
+extends ../partials/layout
+
+block content
+    link(rel='stylesheet', href='../../stylesheets/login-form.css')
+    include ../partials/nav-bar
+    if error
+        div.container
+            div.alert.alert-danger
+                span= error
+    div.container.login-form
+        div.panel-group
+            div.panel.panel-primary
+                div.panel-heading.panel-heading-black Регистрация
+                div.panel-body
+                    form.form-signin(role='form' method="post")
+                        span.reauth-email(id="reauth-email")
+                        input.form-control(type="text" name='firstName' id="input-firstName" placeholder="Име" required autofocu)
+                        input.form-control(type="text" name='secondName' id="input-secondName" placeholder="Презиме" required)
+                        input.form-control(type="text" name='lastName' id="input-lastName" placeholder="Фамилия" required)
+                        input.form-control(type="email" name='username' id="inputEmail" placeholder="Email адрес" required)
+                        input.form-control(type="password" name='password' id="inputPassword" placeholder="Парола" required)
+                        select.form-control(id='role-select', name='role')
+                            option(value='Admin') Администратор
+                            option(value='Slave') Слуга
+                        button.btn.btn-lg.btn-primary.btn-block.btn-signin.btn-custom(type="submit") Регистрирай
+
+

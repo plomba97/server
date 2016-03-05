@@ -13,7 +13,7 @@ function checkIfAuthenticated(req, res, next){
 
 //Route: /groups/add Method:GET - Renders the add-person template
 router.get('/add', checkIfAuthenticated, function(req, res, next) {
-    res.render('add-group', {signedUser: req.user});
+    res.render('groups/add-group', {signedUser: req.user});
 });
 
 //Route: /groups/add Method:POST - Puts data from post into database
@@ -24,7 +24,7 @@ router.post('/add', checkIfAuthenticated, function(req, res, next) {
         comment: req.body.comment
     });
     groupToAdd.save(function(err, group) {
-        res.render('success', {signedUser: req.user, title: 'Групата е успешно добавена:', info: group.name});
+        res.render('partials/success', {signedUser: req.user, title: 'Групата е успешно добавена:', info: group.name});
     });
 });
 

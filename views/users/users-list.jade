@@ -1,0 +1,43 @@
+extends ../partials/layout
+block content
+    script(type='text/javascript', src='../../javascripts/dataTables.bootstrap.min.js')
+    script(type='text/javascript', src='../../javascripts/post-people-groups.js')
+    script(type='text/javascript', src='../../javascripts/common.js')
+    link(rel='stylesheet', href='../../stylesheets/dataTables.bootstrap.min.css')
+    include ../partials/nav-bar
+    #infoModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel')
+        .modal-dialog(role='document')
+            .modal-content
+                .modal-header
+                    button.close(type='button', data-dismiss='modal', aria-label='Close')
+                        span(aria-hidden='true') ×
+                    h4#myModalLabel.modal-title Информация за контакта:
+                .modal-body
+                    p User info
+                .modal-footer
+                    button.btn.btn-default(type='submit') Запази
+                    button.btn.btn-default(type='button', data-dismiss='modal') Затвори
+    div.form-horizontal
+        div.container
+            div.panel-group
+                div.panel.panel-primary
+                    div.panel-heading.panel-heading-black Потребители:
+                    div.panel-body
+                        table.data-table.table.table-striped.table-bordered.table-hover
+                            thead
+                                tr
+                                    th.number-col №
+                                    th.name-col Име
+                                    th.name-col Презиме
+                                    th.name-col Фамилия
+                                    th Email
+                                    th Роля
+                            tbody
+                                each user, index in users
+                                    tr.person-info
+                                        td.user-info= index+1
+                                        td.user-info= user.firstName
+                                        td.user-info= user.secondName
+                                        td.user-info= user.lastName
+                                        td.user-info= user.username
+                                        td.user-info= user.role

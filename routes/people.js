@@ -14,7 +14,7 @@ function checkIfAuthenticated(req, res, next){
 router.get('/', checkIfAuthenticated, function(req, res, next) {
     Person.find().populate('groups').exec(function(err, data) {
         Group.find().exec(function(err, groups) {
-            res.render('people-list', {signedUser: req.user, people: data, groups: groups });
+            res.render('people/people-list', {signedUser: req.user, people: data, groups: groups });
         });
     });
 });
@@ -45,7 +45,7 @@ router.post('/', checkIfAuthenticated, function(req, res, next) {
 
 //Route: /people/add/person Method:GET - Renders the add-person template
 router.get('/add', checkIfAuthenticated, function(req, res, next) {
-    res.render('add-person', {signedUser: req.user});
+    res.render('people/add-person', {signedUser: req.user});
 });
 
 //Route: /people/add/person Method:POST - Receives post request with the data and adds it to db
@@ -68,11 +68,11 @@ router.post('/add', checkIfAuthenticated, function(req, res, next) {
     personToAdd.validate(function(err){
         console.log(err);
         if(err){
-            res.render('fail', {signedUser: req.user, title: 'Грешка при записване: ', errors: err.errors});
+            res.render('partials/fail', {signedUser: req.user, title: 'Грешка при записване: ', errors: err.errors});
         }
         else {
             personToAdd.save(function(err, data) {
-                res.render('success', {signedUser: req.user, title: 'Контактът е успешно добавен:', info: data.firstName + ' ' + data.lastName});
+                res.render('partials/success', {signedUser: req.user, title: 'Контактът е успешно добавен:', info: data.firstName + ' ' + data.lastName});
             });
         }
     });

@@ -1,8 +1,8 @@
-extends layout
+extends ../partials/layout
 
 block content
     link(rel='stylesheet', href='../../stylesheets/login-form.css')
-    include nav-bar
+    include ../partials/nav-bar
     div.container.login-form
         div.panel-group
             div.panel.panel-primary
@@ -12,7 +12,7 @@ block content
                     p.profile-name-card(id="profile-name")
                     form.form-signin(role='form'  method="post")
                         span.reauth-email(id="reauth-email")
-                        input.form-control(type="email" name='username' id="inputEmail" placeholder="Email адрес" required autofocus)
+                        input.form-control(type="email" name='username' id="inputEmail" placeholder="Email адрес" required)
                         input.form-control(type="password" name='password' id="inputPassword" placeholder="Парола" required)
                         div.checkbox(id="remember")
                             label

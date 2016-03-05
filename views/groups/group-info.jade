@@ -1,0 +1,12 @@
+form(role='form')
+    .form-group
+        label(for='name') Име:
+        input#name.form-control(type='text' value= group.name)
+    .form-group
+        label(for='comment') Коментар:
+        input#comment.form-control(type='text' value= group.comment)
+    .form-group
+        label Участници:
+            ul
+                each person in group.people
+                    li= person.firstName + ' ' + person.lastName
