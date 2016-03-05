@@ -1,0 +1,15 @@
+div.container
+    p Титла: #{person.title}
+    p Име: #{person.firstName}
+    p Презиме: #{person.secondName}
+    p Фамилия: #{person.lastName}
+    p Длъжност: #{person.jobTitle}
+    p Email: #{person.email}
+    p Групи:
+    ul
+        each group in person.groups
+            li= group.name
+    p Телефони:
+    ul
+        each phone in person.phones
+            li= phone.number

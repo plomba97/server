@@ -12,7 +12,10 @@ router.get('/calls', function(req, res, next) {
 });
 
 router.get('/personInfo/:id', function(req, res, next) {
-    res.render('current-calls-data', {calls: calls});
+    var groupId = req.params.id;
+    Person.findOne({_id: groupId}).populate('groups').exec(function(err, data) {
+        res.render('person-info', {person: data});
+    });
 });
 
 module.exports = router;
