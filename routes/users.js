@@ -15,7 +15,7 @@ router.get('/register', checkIfAuthenticated, function(req, res) {
     res.render('register-form', {signedUser: req.user});
 });
 
-router.post('/register', checkIfAuthenticated, function(req, res) {
+router.post('/register', function(req, res) {
     Account.register(new Account({ username : req.body.username }), req.body.password, function(err, account) {
         if (err) {
             console.log(err);
