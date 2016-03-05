@@ -2,10 +2,20 @@ extends layout
 block content
     script(type='text/javascript', src='../../javascripts/common.js')
     script(type='text/javascript', src='../../javascripts/post-start-calls.js')
-    script(type='text/javascript', src='../../javascripts/datatables.min.js')
     script(type='text/javascript', src='../../javascripts/dataTables.bootstrap.min.js')
     link(rel='stylesheet', href='../../stylesheets/dataTables.bootstrap.min.css')
     include nav-bar
+    #infoModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel')
+        .modal-dialog(role='document')
+            .modal-content
+                .modal-header
+                    button.close(type='button', data-dismiss='modal', aria-label='Close')
+                        span(aria-hidden='true') ×
+                    h4#myModalLabel.modal-title Информация за групата:
+                .modal-body
+                    p User info
+                .modal-footer
+                    button.btn.btn-default(type='button', data-dismiss='modal') Затвори
     div.form-horizontal
         div.container
             div.panel-group
@@ -36,7 +46,7 @@ block content
                                     tr
                                         td.text-center.checkbox-container
                                             input(type='checkbox' id= group.id)
-                                        td= index+1
-                                        td= group.name
-                                        td= group.comment
-                                        td= group.people.length
+                                        td.group-info= index+1
+                                        td.group-info= group.name
+                                        td.group-info= group.comment
+                                        td.group-info= group.people.length

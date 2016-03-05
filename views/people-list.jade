@@ -1,11 +1,8 @@
 extends layout
 block content
     script(type='text/javascript', src='../../javascripts/dataTables.bootstrap.min.js')
-    //script(type='text/javascript', src='../../javascripts/bootstrap.js')
-    script(type='text/javascript', src='../../javascripts/user-list.js')
     script(type='text/javascript', src='../../javascripts/post-people-groups.js')
     script(type='text/javascript', src='../../javascripts/common.js')
-
     link(rel='stylesheet', href='../../stylesheets/dataTables.bootstrap.min.css')
     include nav-bar
     #infoModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel')
@@ -18,6 +15,7 @@ block content
                 .modal-body
                     p User info
                 .modal-footer
+                    button.btn.btn-default(type='submit') Запази
                     button.btn.btn-default(type='button', data-dismiss='modal') Затвори
     div.form-horizontal
         div.container
@@ -51,13 +49,13 @@ block content
                                     tr.person-info
                                         td.text-center.checkbox-container
                                             input(type='checkbox' id= person.id)
-                                        td.person-details= index+1
-                                        td.person-details= person.title
-                                        td.person-details= person.firstName
-                                        td.person-details= person.secondName
-                                        td.person-details= person.lastName
-                                        td.person-details= person.jobTitle
+                                        td.person-info= index+1
+                                        td.person-info= person.title
+                                        td.person-info= person.firstName
+                                        td.person-info= person.secondName
+                                        td.person-infos= person.lastName
+                                        td.person-info= person.jobTitle
                                         if person.groups[0]
-                                            td.person-details= person.groups[0].name
+                                            td.person-info= person.groups[0].name
                                         else
-                                            td.person-details -
+                                            td.person-info -

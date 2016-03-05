@@ -1,0 +1,9 @@
+div.container
+    p Име: #{group.name}
+    p Коментар: #{group.comment}
+    p Участници:
+    ul
+        each person in group.people
+            li= person.firstName +' ' + person.lastName
+
+

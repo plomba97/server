@@ -1,15 +1,29 @@
-div.container
-    p Титла: #{person.title}
-    p Име: #{person.firstName}
-    p Презиме: #{person.secondName}
-    p Фамилия: #{person.lastName}
-    p Длъжност: #{person.jobTitle}
-    p Email: #{person.email}
-    p Групи:
-    ul
-        each group in person.groups
-            li= group.name
-    p Телефони:
-    ul
-        each phone in person.phones
-            li= phone.number
+form(role='form')
+    .form-group
+        label(for='title') Титла:
+        input#title.form-control(type='text' value= person.title)
+    .form-group
+        label(for='firstName') Име:
+        input#firstName.form-control(type='text' value= person.firstName)
+    .form-group
+        label(for='secondName') Презиме:
+        input#secondName.form-control(type='text' value= person.secondName)
+    .form-group
+        label(for='lastName') Фамилия:
+        input#lastName.form-control(type='text' value= person.lastName)
+    .form-group
+        label(for='jobTitle') Длъжност:
+        input#jobTitle.form-control(type='text' value= person.jobTitle)
+    .form-group
+        label(for='email') Email:
+        input#email.form-control(type='email' value= person.email)
+    .form-group
+        label Групи:
+        ul
+            each group in person.groups
+                li= group.name
+    .form-group
+        label Телефони:
+        ul
+            each phone in person.phones
+                li= phone.number
