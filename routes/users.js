@@ -11,7 +11,7 @@ function checkIfAuthenticated(req, res, next){
     }
 }
 
-router.get('/register', checkIfAuthenticated, function(req, res) {
+router.get('/register', function(req, res) {
     res.render('register-form', {signedUser: req.user});
 });
 
