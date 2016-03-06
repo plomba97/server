@@ -42,6 +42,7 @@ CallManager.prototype.getActiveCalls = function () {
 CallManager.prototype.startCalls = function () {
     var obj = this;
     if(this.calls[0]){
+        obj.state = 'Working';
         var grouped = _.groupBy(obj.calls, 'priority');
         var areEmpty = false;
         console.log(grouped[1]);

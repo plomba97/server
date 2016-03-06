@@ -2,9 +2,4 @@ extends layout
 
 block content
     include nav-bar
-    div.container
-        div.alert.alert-danger(role=alert)
-            span= title
-            each error in errors
-                span.mark
-                    strong= error.message + ', '
+

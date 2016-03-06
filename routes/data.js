@@ -9,8 +9,14 @@ var callManager = require('../services/asterisk/calls-manager');
 router.get('/calls', function(req, res, next) {
     var objToSend = {};
     objToSend.calls = [];
-    var calls = callManager.getManager().calls;
-    res.render('inform/current-calls-data', {calls: calls});
+    var manager = callManager.getManager();
+    console.log(manager);
+    if(manager.state  == 'Working'){
+        var calls = callManager.getManager().calls;
+        res.render('inform/current-calls-data', {calls: calls});
+    }
+    res.render('partials/err', {title: 'Няма активоно оповестяване', errors: {}});
+
 });
 
 router.get('/personInfo/:id', function(req, res, next) {
