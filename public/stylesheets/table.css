@@ -1,15 +1,17 @@
-
-
 table th.checkbox-col{
 	width: 1%;
 }
 
 table th.name-col{
-	width: 100%;
+	width: 17%;
 }
 
-.number-col{
-	width: 1%; !important;
+table th.job-col{
+	width: 17%;
+}
+
+table th.number-col{
+	width: 1%;
 }
 
 table th.title-col{

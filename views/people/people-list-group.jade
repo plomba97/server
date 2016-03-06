@@ -3,6 +3,7 @@ block content
     script(type='text/javascript', src='../../javascripts/dataTables.bootstrap.min.js')
     script(type='text/javascript', src='../../javascripts/post-people-groups.js')
     script(type='text/javascript', src='../../javascripts/common.js')
+    link(rel='stylesheet', href='../../stylesheets/table.css')
     link(rel='stylesheet', href='../../stylesheets/dataTables.bootstrap.min.css')
     include ../partials/nav-bar
     div.form-horizontal
@@ -34,7 +35,7 @@ block content
                                     th Групи
                             tbody
                                 each person, index in people
-                                    tr.person-info
+                                    tr.person-info(id= person.id)
                                         td.text-center.checkbox-container
                                             input(type='checkbox' id= person.id)
                                         td.person-info= index+1

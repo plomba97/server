@@ -43,7 +43,7 @@ block content
                                     th Участници
                             tbody
                                 each group,index in groups
-                                    tr
+                                    tr(id= group.id)
                                         td.text-center.checkbox-container
                                             input(type='checkbox' id= group.id)
                                         td.group-info= index+1
