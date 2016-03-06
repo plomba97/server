@@ -10,17 +10,26 @@ function checkIfAuthenticated(req, res, next){
         res.redirect("/users/login");
     }
 }
-//Route: /people/ Method:GET - Renders user-list template
-router.get('/', checkIfAuthenticated, function(req, res, next) {
+
+router.get('/list', checkIfAuthenticated, function(req, res, next) {
     Person.find().populate('groups').exec(function(err, data) {
         Group.find().exec(function(err, groups) {
-            res.render('people/people-list', {signedUser: req.user, people: data, groups: groups });
+            res.render('people/people-list', {signedUser: req.user, people: data });
+        });
+    });
+});
+
+//Route: /people/ Method:GET - Renders user-list template
+router.get('/addToGroup', checkIfAuthenticated, function(req, res, next) {
+    Person.find().populate('groups').exec(function(err, data) {
+        Group.find().exec(function(err, groups) {
+            res.render('people/people-list-group', {signedUser: req.user, people: data, groups: groups });
         });
     });
 });
 
 //Route: /people/ Method:POST - Gets data about people to add in group
-router.post('/', checkIfAuthenticated, function(req, res, next) {
+router.post('/addToGroup', checkIfAuthenticated, function(req, res, next) {
     console.log(req.body);
     var groupId = req.body.group;
     var userIds = req.body.ids;

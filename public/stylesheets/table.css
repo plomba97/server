@@ -1,37 +1,17 @@
-table.tablesorter thead tr th, table.tablesorter tfoot tr th {
-	background-color: #f4fcfc;
-	border: 1px solid #FFF;
-}
 
-table.tablesorter thead tr .header {
-	background-image: url('../images/blue/bg.gif');
-	background-repeat: no-repeat;
-	background-position: center right;
-	cursor: pointer;
-}
-table.tablesorter thead tr .headerSortUp {
-	background-image: url('../images/blue/asc.gif');
-}
-table.tablesorter thead tr .headerSortDown {
-	background-image: url('../images/blue/desc.gif');
-}
 
-table.tablesorter{
-    border-bottom: 1px solid #b5c4b7;
-}
-
-table.tablesorter th.checkbox-col{
+table th.checkbox-col{
 	width: 1%;
 }
 
-table.tablesorter th.name-col{
-	width: 18%;
+table th.name-col{
+	width: 100%;
 }
 
-table.tablesorter th.number-col{
-	width: 5%;
+.number-col{
+	width: 1%; !important;
 }
 
-table.tablesorter th.title-col{
+table th.title-col{
 	width: 8%;
 }

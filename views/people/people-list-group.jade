@@ -3,30 +3,28 @@ block content
     script(type='text/javascript', src='../../javascripts/dataTables.bootstrap.min.js')
     script(type='text/javascript', src='../../javascripts/post-people-groups.js')
     script(type='text/javascript', src='../../javascripts/common.js')
-    link(rel='stylesheet', href='../../stylesheets/table.css')
     link(rel='stylesheet', href='../../stylesheets/dataTables.bootstrap.min.css')
     include ../partials/nav-bar
-    #infoModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel')
-        .modal-dialog(role='document')
-            .modal-content
-                .modal-header
-                    button.close(type='button', data-dismiss='modal', aria-label='Close')
-                        span(aria-hidden='true') ×
-                    h4#myModalLabel.modal-title Информация за контакта:
-                .modal-body
-                    p User info
-                .modal-footer
-                    button.btn.btn-default(type='submit') Запази
-                    button.btn.btn-default(type='button', data-dismiss='modal') Затвори
     div.form-horizontal
         div.container
             div.panel-group
                 div.panel.panel-primary
-                    div.panel-heading.panel-heading-black Контакти
+                    div.panel-heading.panel-heading-black Добавяне на контакт в група
                     div.panel-body
+                        div.row.margin-bot
+                            div.col-lg-9.col-md-9.col-sm-9.col-xs-9
+                                div.col-lg-3.col-md-3.col-sm-33.col-xs-3
+                                    label.control-label(for='group-select') Добавяне в група:
+                                div.col-lg-3.col-md-3.col-sm-3.col-xs-3
+                                    select.form-control(id='group-select', name='Group')
+                                        each group in groups
+                                            option(value= group.id)= group.name
+                                div.col-lg-2.col-md-2.col-sn-2.col-xs-2
+                                    button.btn.btn-default.btn-primary.btn-custom(id='add-button') Добави
                         table.data-table.table.table-striped.table-bordered.table-hover
                             thead
                                 tr
+                                    th.checkbox-col
                                     th.number-col №
                                     th.title-col Титла
                                     th.name-col Име
@@ -36,7 +34,9 @@ block content
                                     th Групи
                             tbody
                                 each person, index in people
-                                    tr.person-info(id= person.id)
+                                    tr.person-info
+                                        td.text-center.checkbox-container
+                                            input(type='checkbox' id= person.id)
                                         td.person-info= index+1
                                         td.person-info= person.title
                                         td.person-info= person.firstName
