@@ -5,13 +5,13 @@ function Call(options){
     this.state = 'None';
 }
 
-Call.prototype.startCall = function (ari, appName) {
+Call.prototype.startCall = function (ari, appName, recording) {
     var obj = this;
     var promise = new Promise(function(resolve, reject){
         obj.state = 'Waiting';
         var isAnswered = false;
         //console.log('trying to originate');
-        ari.channels.originate({endpoint: 'SIP/asterisk2/'+obj.destination.number, app: appName, appArgs: 'dealed'})
+        ari.channels.originate({endpoint: 'SIP/avaya/'+obj.destination.number, app: appName, appArgs: 'dealed'})
             .then(function(channel){
                 //console.log('--call.js--channel successfully originated:', channel.id);
                 //console.log('originated');
@@ -27,7 +27,7 @@ Call.prototype.startCall = function (ari, appName) {
                         //console.log('--call.js--channel playing sound', channel.id);
                         obj.state = 'Answered';
                         isAnswered = true;
-                        playBack(channel); //TODO: implement custom recordings
+                        playBack(channel, recording); //TODO: implement custom recordings
                     }
                 }
 
@@ -44,7 +44,7 @@ Call.prototype.startCall = function (ari, appName) {
 
                 function playBack(channel, recording){
                     var playback = ari.Playback();
-                    channel.play({media: 'sound:demo-congrats'}, playback)
+                    channel.play({media: 'sound:' + recording}, playback)
                         .then(function(playback){
                             obj.state='Playing';
                         })

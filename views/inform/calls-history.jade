@@ -4,9 +4,11 @@ block content
     script(type='text/javascript', src='../../javascripts/post-start-calls.js')
     script(type='text/javascript', src='../../javascripts/dataTables.bootstrap.min.js')
     link(rel='stylesheet', href='../../stylesheets/dataTables.bootstrap.min.css')
+    //link(rel='stylesheet', href='../../stylesheets/table.css')
+    link(rel='stylesheet', href='../../stylesheets/current-calls.css')
     include ../partials/nav-bar
     #infoModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel')
-        .modal-dialog(role='document')
+        .modal-dialog.modal-medium(role='document')
             .modal-content
                 .modal-header
                     button.close(type='button', data-dismiss='modal', aria-label='Close')
@@ -20,19 +22,19 @@ block content
         div.container
             div.panel-group
                 div.panel.panel-primary
-                    div.panel-heading.panel-heading-black Групи
+                    div.panel-heading.panel-heading-black Архив
                     div.panel-body
                         table.data-table.table.table-striped.table-bordered.table-hover
                             thead
                                 tr
                                     th №
-                                    th.col-xs-4 Име
-                                    th Коментар
-                                    th Участници
+                                    th Име
+                                    th Дата
+                                    th Час
                             tbody
-                                each group,index in groups
-                                    tr(id= group.id)
-                                        td.group-info= index+1
-                                        td.group-info= group.name
-                                        td.group-info= group.comment
-                                        td.group-info= group.people.length
+                                each log,index in logs
+                                    tr(id= log.id)
+                                        td.calls-info= index+1
+                                        td.calls-info= log.name
+                                        td.calls-info= moment(log.dateStarted).format('DD.MM.YYYY')
+                                        td.calls-info= moment(log.dateStarted).format('hh.mm.ss')

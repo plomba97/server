@@ -12,7 +12,7 @@ $(document).ready(function(){
         console.log(object);
 
         $.ajax({
-            url : "/people",
+            url : "/people/addToGroup",
             type: "POST",
             contentType: 'application/json',
             data : JSON.stringify(object),

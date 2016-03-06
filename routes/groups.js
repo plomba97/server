@@ -28,5 +28,13 @@ router.post('/add', checkIfAuthenticated, function(req, res, next) {
     });
 });
 
+router.get('/list', checkIfAuthenticated, function(req, res, next) {
+    Group.find().exec(function(err, groups) {
+        console.log(req.user);
+        res.render('groups/groups-list', {signedUser: req.user, groups: groups });
+    });
+});
+
+
 module.exports = router;
 

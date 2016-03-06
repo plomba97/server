@@ -20,7 +20,7 @@ block content
         div.container
             div.panel-group
                 div.panel.panel-primary
-                    div.panel-heading.panel-heading-black Групи
+                    div.panel-heading.panel-heading-black Групи за оповестяване
                     div.panel-body
 
                         table.data-table.table.table-striped.table-bordered.table-hover
@@ -44,11 +44,14 @@ block content
                         div.row
                             div.col-lg-12
                                 div.col-lg-1
+                                    label.control-label(for='name-input') Име:
+                                div.col-lg-4
+                                    input.form-control(type='text' id='name-input', name='name')
+                                div.col-lg-1
                                     label.control-label(for='recording-select') Запис:
                                 div.col-lg-4
                                     select.form-control(id='recording-select', name='Recording')
-                                        option запис 1
-                                            option запис 2
-                                            option запис 3
+                                        each recording in recordings
+                                            option(value= recording.id)=recording.name
                                 div
                                     button.btn.btn-default.btn-primary.btn-custom.pull-right(id='start-button') Оповести

@@ -1,4 +1,4 @@
-extends layout
+extends ../partials/layout
 block content
     script(type='text/javascript', src='../../javascripts/handlebars-v4.0.5.js')
     script(type='text/javascript', src='../../javascripts/current-calls.js')
@@ -7,7 +7,7 @@ block content
     script(type='text/javascript', src='../../javascripts/dataTables.bootstrap.min.js')
     link(rel='stylesheet', href='../../stylesheets/dataTables.bootstrap.min.css')
     link(rel='stylesheet', href='../../stylesheets/current-calls.css')
-    include nav-bar
+    include ../partials/nav-bar
     div.form-horizontal
         div.container
             div.panel-group

@@ -1,24 +1,24 @@
 var _ = require('underscore');
+var callsLogger = require('../calls-logger.js');
+
 
 var managers = {};
 
 function CallManager(options){
+    this.name = options.name;
+    this.timeStarted = 'NotStarted';
     this.ari = options.ari;
     this.calls = [];
     this.maxCalls = options.maxCalls;
     this.appName = options.appName;
     this.state = 'None';
     this.activeCalls = 0;
+    this.recording = options.recording;
 }
 
 var createManager = function (options) {
-    if(Object.keys(managers).length !== 0){
-        return managers;
-    }
-    else{
-        managers = new CallManager(options);
-        return managers;
-    }
+    managers = new CallManager(options);
+    return managers;
 };
 
 var getManager = function () {
@@ -49,7 +49,7 @@ CallManager.prototype.startCalls = function () {
             //console.log(obj.getActiveCalls());
             if(obj.activeCalls < obj.maxCalls){
                 if(grouped[1] && grouped[1][0]){      //Priority 1
-                    grouped[1][0].startCall(obj.ari, obj.appName)
+                    grouped[1][0].startCall(obj.ari, obj.appName, obj.recording)
                         .then(function(state){
                             console.log(state);
                             obj.activeCalls--;
@@ -62,7 +62,7 @@ CallManager.prototype.startCalls = function () {
                     obj.activeCalls++;
                 }
                 else if(grouped[2] && grouped[2][0]){   //Priority 2
-                    grouped[2][0].startCall(obj.ari, obj.appName)
+                    grouped[2][0].startCall(obj.ari, obj.appName, obj.recording)
                         .then(function(state){
                             console.log(state);
                             obj.activeCalls--;
@@ -75,7 +75,7 @@ CallManager.prototype.startCalls = function () {
                     obj.activeCalls++;
                 }
                 else if(grouped[3] && grouped[3][0]){   //Priority 3
-                    grouped[3][0].startCall(obj.ari, obj.appName)
+                    grouped[3][0].startCall(obj.ari, obj.appName, obj.recording)
                         .then(function(state){
                             console.log(state);
                             obj.activeCalls--;
@@ -88,7 +88,7 @@ CallManager.prototype.startCalls = function () {
                     obj.activeCalls++;
                 }
                 else if(grouped[4] && grouped[4][0]){   //Priority 4
-                    grouped[4][0].startCall(obj.ari, obj.appName)
+                    grouped[4][0].startCall(obj.ari, obj.appName, obj.recording)
                         .then(function(state){
                             console.log(state);
                             obj.activeCalls--;
@@ -101,7 +101,7 @@ CallManager.prototype.startCalls = function () {
                     obj.activeCalls++;
                 }
                 else if(grouped[5] && grouped[5][0]){   //Priority 5
-                    grouped[5][0].startCall(obj.ari, obj.appName)
+                    grouped[5][0].startCall(obj.ari, obj.appName, obj.recording)
                         .then(function(state){
                             console.log(state);
                             obj.activeCalls--;
@@ -113,8 +113,9 @@ CallManager.prototype.startCalls = function () {
                     grouped[5].shift();
                     obj.activeCalls++;
                 }
-                else{
+                else if(obj.activeCalls == 0){
                     areEmpty = true;
+                    finalizeManager(obj);
                 }
             }
             if(!areEmpty){
@@ -124,6 +125,9 @@ CallManager.prototype.startCalls = function () {
         start();
     }
 };
+function finalizeManager(obj){
+    callsLogger.log(obj);
+}
 
 module.exports = {
     createManager: createManager,

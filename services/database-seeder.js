@@ -2,7 +2,7 @@ var mongo = require('mongodb');
 var mongoose = require('mongoose');
 var Person = require('../data-models/person-model.js');
 var Group = require('../data-models/group-model.js');
-var loremIpsum = require('lorem-ipsum')
+var loremIpsum = require('lorem-ipsum');
 
 mongoose.connect('mongodb://localhost/testPeople');
 

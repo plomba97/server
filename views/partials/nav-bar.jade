@@ -26,6 +26,8 @@ nav.navbar.navbar-inverse
                             span.caret
                         ul.dropdown-menu
                             li
+                                a(href='/groups/list') Всички групи
+                            li
                                 a(href='/groups/add') Добавяне на група
                     li.dropdown
                         a.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false')
@@ -37,6 +39,18 @@ nav.navbar.navbar-inverse
                                 a(href='/inform') Стартиране на оповестяване
                             li
                                 a(href='/inform/calls') Текущо оповестяване
+                            li
+                                a(href='/inform/history') Архив на оповестяванията
+                    li.dropdown
+                        a.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false')
+                            i.glyphicon.glyphicon-volume-up
+                            span Записи
+                            span.caret
+                        ul.dropdown-menu
+                            li
+                                a(href='/inform') Всички записи
+                            li
+                                a(href='/inform/calls') Добавяне на запис
                     li.dropdown
                         a.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false')
                             i.glyphicon.glyphicon-cog

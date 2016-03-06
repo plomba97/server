@@ -1,0 +1,32 @@
+table.table.table-striped.table-bordered.table-hover.modal-table
+    thead
+        tr
+            th.number-col №
+            th.phone-col Номер
+            th.name-col Име
+            th.name-col Презиме
+            th.name-col Фамилия
+            th.status-col Статус
+            th.status-light-col
+    tbody
+        each call, index in calls
+            tr.person-info
+                td.person-details= index+1
+                td.person-details= call.destination.number
+                td.person-details= call.destination.firstName
+                td.person-details= call.destination.secondName
+                td.person-details= call.destination.lastName
+                td.person-details= call.state
+                td.person-details
+                    if call.state == 'Waiting'
+                        div.circle-grey
+                    else if call.state == 'Dialing'
+                        div.circle-yellow
+                    else if call.state == 'Playing'
+                        div.circle-blue
+                    else if call.state == 'FinishedAnswered'
+                        div.circle-green
+                    else if call.state == 'None'
+                        div.circle-grey
+                    else if call.state == 'FinishedUnAnswered'
+                        div.circle-red

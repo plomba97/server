@@ -3,12 +3,14 @@ $(document).ready(function(){
         var ids=[];
         var object={};
         var recording = $( "#recording-select" ).val();
+        var name = $('#name-input').val();
         $('input:checkbox:checked').each(function () {
             ids.push($(this).attr('id'));
         });
         console.log(ids);
         object.ids = ids;
         object.recording = recording;
+        object.name = name;
         console.log(object);
 
         $.ajax({

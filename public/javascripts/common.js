@@ -21,6 +21,15 @@ $(document).ready(function(){
                 $('#infoModal').find('.modal-body').html(data);
             });
         }
+        else if($(event.target).hasClass('calls-info')){
+            id = $(event.target).parent().attr('id');
+            $('#infoModal').modal('show');
+            console.log(id);
+            $.get('/data/callsInfo/' + id, function(data){
+                $('#infoModal').find('.modal-body').html(data);
+                $('.modal-table').DataTable({"bAutoWidth": false});
+            });
+        }
     });
 
     $('.data-table').DataTable({
