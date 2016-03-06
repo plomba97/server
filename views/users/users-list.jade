@@ -34,7 +34,7 @@ block content
                                     th Роля
                             tbody
                                 each user, index in users
-                                    tr.person-info
+                                    tr.person-info(id= user.id)
                                         td.user-info= index+1
                                         td.user-info= user.firstName
                                         td.user-info= user.secondName

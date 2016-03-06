@@ -1,0 +1,15 @@
+form(role='form')
+    .form-group
+        label(for='firstName') Име:
+        input#firstName.form-control(type='text' value= user.firstName)
+    .form-group
+        label(for='secondName') Презиме:
+        input#secondName.form-control(type='text' value= user.secondName)
+    .form-group
+        label(for='lastName') Фамилия:
+        input#lastName.form-control(type='text' value= user.lastName)
+    .form-group
+        label(for='email') Email:
+        input#email.form-control(type='email' value= user.username)
+    .form-group
+        label(for='email') Роля: #{user.role}

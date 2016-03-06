@@ -30,6 +30,14 @@ $(document).ready(function(){
                 $('.modal-table').DataTable({"bAutoWidth": false});
             });
         }
+        else if($(event.target).hasClass('user-info')){
+            id = $(event.target).parent().attr('id');
+            $('#infoModal').modal('show');
+            console.log(id);
+            $.get('/data/userInfo/' + id, function(data){
+                $('#infoModal').find('.modal-body').html(data);
+            });
+        }
     });
 
     $('.data-table').DataTable({

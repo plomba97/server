@@ -3,8 +3,9 @@ var express = require('express');
 var Person = require('../data-models/person-model.js');
 var Group = require('../data-models/group-model.js');
 var CallsLog = require('../data-models/calls-data-model.js');
+var Account = require('../data-models/account-model');
 var router = express.Router();
-var callManager = require('../services/asterisk/calls-manager')
+var callManager = require('../services/asterisk/calls-manager');
 
 function checkIfAuthenticated(req, res, next){
     if(req.isAuthenticated()){
@@ -46,6 +47,14 @@ router.get('/callsInfo/:id', checkIfAuthenticated, function(req, res, next) {
     var callsId = req.params.id;
     CallsLog.findOne({_id: callsId}).populate('people').exec(function(err, data) {
         res.render('inform/history-info', {calls: (data.calls) ? data.calls : {}});
+    });
+});
+
+router.get('/userInfo/:id', checkIfAuthenticated, function(req, res, next) {
+    var userId = req.params.id;
+    Account.findOne({_id: userId}).populate('people').exec(function(err, data) {
+        console.log(data);
+        res.render('users/user-info', {user: data});
     });
 });
 
