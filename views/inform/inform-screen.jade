@@ -22,17 +22,7 @@ block content
                 div.panel.panel-primary
                     div.panel-heading.panel-heading-black Групи
                     div.panel-body
-                        div.row.margin-bot
-                            div.col-lg-9.col-md-9.col-sm-9.col-xs-9 
-                                div.col-lg-1.col-md-1.col-sm-1.col-xs-1
-                                    label.control-label(for='recording-select') Запис:
-                                div.col-lg-2.col-md-2.col-sm-2.col-xs-2
-                                    select.form-control(id='recording-select', name='Recording')
-                                        option запис 1
-                                            option запис 2
-                                            option запис 3
-                                div.col-lg-2.col-md-2.col-sm-2.col-xs-2
-                                    button.btn.btn-default.btn-primary.btn-custom(id='start-button') Оповести
+
                         table.data-table.table.table-striped.table-bordered.table-hover
                             thead
                                 tr
@@ -50,3 +40,15 @@ block content
                                         td.group-info= group.name
                                         td.group-info= group.comment
                                         td.group-info= group.people.length
+                    div.panel-footer.panel-default
+                        div.row
+                            div.col-lg-12
+                                div.col-lg-1
+                                    label.control-label(for='recording-select') Запис:
+                                div.col-lg-4
+                                    select.form-control(id='recording-select', name='Recording')
+                                        option запис 1
+                                            option запис 2
+                                            option запис 3
+                                div
+                                    button.btn.btn-default.btn-primary.btn-custom.pull-right(id='start-button') Оповести

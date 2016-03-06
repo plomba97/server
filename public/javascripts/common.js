@@ -24,6 +24,6 @@ $(document).ready(function(){
     });
 
     $('.data-table').DataTable({
-        fixedHeader: true
+        rowReorder: true
     });
 });
