@@ -1,7 +1,7 @@
 extends ../partials/layout
 block content
     script(type='text/javascript', src='../../javascripts/dataTables.bootstrap.min.js')
-    script(type='text/javascript', src='../../javascripts/post-people-groups.js')
+    script(type='text/javascript', src='../../javascripts/people-list-group.js')
     script(type='text/javascript', src='../../javascripts/common.js')
     link(rel='stylesheet', href='../../stylesheets/table.css')
     link(rel='stylesheet', href='../../stylesheets/dataTables.bootstrap.min.css')
@@ -15,29 +15,13 @@ block content
                         table.data-table.table.table-striped.table-bordered.table-hover
                             thead
                                 tr
-                                    th.checkbox-col
                                     th.number-col №
                                     th.title-col Титла
                                     th.name-col Име
                                     th.name-col Презиме
                                     th.name-col Фамилия
                                     th Длъжност
-                                    th Групи
-                            tbody
-                                each person, index in people
-                                    tr.person-info(id= person.id)
-                                        td.text-center.checkbox-container
-                                            input(type='checkbox' id= person.id)
-                                        td.person-info= index+1
-                                        td.person-info= person.title
-                                        td.person-info= person.firstName
-                                        td.person-info= person.secondName
-                                        td.person-info= person.lastName
-                                        td.person-info= person.jobTitle
-                                        if person.groups[0]
-                                            td.person-info= person.groups[0].name
-                                        else
-                                            td.person-info -
+                                    th.groups-col Групи
                     div.panel-footer.panel-default
                         div.row
                             div.col-lg-12

@@ -1,8 +1,8 @@
 extends ../partials/layout
 block content
     script(type='text/javascript', src='../../javascripts/dataTables.bootstrap.min.js')
-    script(type='text/javascript', src='../../javascripts/post-people-groups.js')
     script(type='text/javascript', src='../../javascripts/common.js')
+    script(type='text/javascript', src='../../javascripts/people-list.js')
     link(rel='stylesheet', href='../../stylesheets/dataTables.bootstrap.min.css')
     link(rel='stylesheet', href='../../stylesheets/table.css')
     include ../partials/nav-bar
@@ -14,10 +14,10 @@ block content
                         span(aria-hidden='true') ×
                     h4#myModalLabel.modal-title Информация за контакта:
                 .modal-body
-                    p User info
                 .modal-footer
-                    button.btn.btn-default(type='submit') Запази
                     button.btn.btn-default(type='button', data-dismiss='modal') Затвори
+                    button.btn.btn-danger.delete-button Изтрий
+                    button.btn.btn-success.save-button Запази
     div.form-horizontal
         div.container
             div.panel-group
@@ -27,23 +27,10 @@ block content
                         table.data-table.table.table-striped.table-bordered.table-hover
                             thead
                                 tr
-                                    th.number-col №
+                                    th.id-col
                                     th.title-col Титла
                                     th.name-col Име
                                     th.name-col Презиме
                                     th.name-col Фамилия
                                     th.job-col Длъжност
                                     th Групи
-                            tbody
-                                each person, index in people
-                                    tr.person-info(id= person.id)
-                                        td.person-info= index+1
-                                        td.person-info= person.title
-                                        td.person-info= person.firstName
-                                        td.person-info= person.secondName
-                                        td.person-info= person.lastName
-                                        td.person-info= person.jobTitle
-                                        if person.groups[0]
-                                            td.person-info= person.groups[0].name
-                                        else
-                                            td.person-info -

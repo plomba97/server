@@ -5,7 +5,8 @@ var groupSchema = new mongoose.Schema(
     {
         name: {type: String, required: true},
         comment: {type: String, required: true},
-        people: [{ type: Schema.Types.ObjectId, ref: 'Person', index: { unique: true } }]
+        people: [{ type: Schema.Types.ObjectId, ref: 'Person', index: { unique: true } }],
+        isDeleted: {type: Boolean, required: true}
     }
 );
 

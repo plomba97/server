@@ -23,7 +23,8 @@ var personSchema = new mongoose.Schema(
                     return phonesAreValid;
                 },
                 message: 'Невалиданен телефон!'
-        }*/}
+        }*/},
+        isDeleted: {type: Boolean, required: true}
     }
 );
 

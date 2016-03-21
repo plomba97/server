@@ -13,7 +13,8 @@ var emails = ['ceko@abv.bg', 'vankata111@gmail.com', 'gero32@abv.bg', 'maimunata
 var jobTitles = ['Професор', 'Водопроводчик', 'Майстор', 'Чистач', 'Програмист', 'Боклукчия', 'Космонавт'];
 
 var personToAdd = {};
-for(var i=0;i<300;i++){
+
+for(var i=0;i<10000;i++){
     personToAdd = new Person({
         title: titles[Math.floor(Math.random()*titles.length)],
         firstName: firstNames[Math.floor(Math.random()*firstNames.length)],
@@ -21,17 +22,20 @@ for(var i=0;i<300;i++){
         lastName: lastNames[Math.floor(Math.random()*lastNames.length)],
         email: emails[Math.floor(Math.random()*emails.length)],
         jobTitle: jobTitles[Math.floor(Math.random()*jobTitles.length)],
-        groups: []
+        groups: [],
+        isDeleted: false
     });
     personToAdd.phones.push({number: String(Math.floor(100000000 + Math.random() * 900000000)), priority: Math.floor(1 + Math.random() * 4), attempts: 5});
     personToAdd.save();
+    console.log(i);
 }
 
 var groupToAdd = {};
 for(var i=0;i<60;i++){
     groupToAdd = new Group({
         name: loremIpsum({count: 2, units: 'word' }),
-        comment: loremIpsum({count: 4, units: 'word' })
+        comment: loremIpsum({count: 4, units: 'word' }),
+        isDeleted: false
     });
     groupToAdd.save();
 }

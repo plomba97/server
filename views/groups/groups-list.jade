@@ -1,7 +1,7 @@
 extends ../partials/layout
 block content
     script(type='text/javascript', src='../../javascripts/common.js')
-    script(type='text/javascript', src='../../javascripts/post-start-calls.js')
+    script(type='text/javascript', src='../../javascripts/groups-list.js')
     script(type='text/javascript', src='../../javascripts/dataTables.bootstrap.min.js')
     link(rel='stylesheet', href='../../stylesheets/dataTables.bootstrap.min.css')
     include ../partials/nav-bar
@@ -13,9 +13,10 @@ block content
                         span(aria-hidden='true') ×
                     h4#myModalLabel.modal-title Информация за групата:
                 .modal-body
-                    p User info
                 .modal-footer
                     button.btn.btn-default(type='button', data-dismiss='modal') Затвори
+                    button.btn.btn-danger.delete-button Изтрий
+                    button.btn.btn-success.save-button Запази
     div.form-horizontal
         div.container
             div.panel-group
@@ -25,14 +26,7 @@ block content
                         table.data-table.table.table-striped.table-bordered.table-hover
                             thead
                                 tr
-                                    th №
+                                    th.id-col
                                     th.col-xs-4 Име
                                     th Коментар
                                     th Участници
-                            tbody
-                                each group,index in groups
-                                    tr(id= group.id)
-                                        td.group-info= index+1
-                                        td.group-info= group.name
-                                        td.group-info= group.comment
-                                        td.group-info= group.people.length

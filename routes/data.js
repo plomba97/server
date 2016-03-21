@@ -58,6 +58,139 @@ router.get('/userInfo/:id', checkIfAuthenticated, function(req, res, next) {
     });
 });
 
+router.post('/usersList', checkIfAuthenticated, function(req, res, next) {
+    var draw = parseInt(req.body.draw);
+    var skip = parseInt(req.body.start);
+    var take = parseInt(req.body.length);
+    var colMap = ["title", "firstName", "secondName", "lastName", "jobTitle", ""];
+    var orderCol = req.body['order[0][column]'] - 1;
+    var orderDir = req.body['order[0][dir]'];
+    var colNmae = colMap[orderCol];
+    var filterQuery = req.body['search[value]'];
+    var filterRegex = new RegExp(filterQuery, 'i');
+
+    Person.count({ 'isDeleted': false}).or([{ 'firstName': { $regex: filterRegex }}, { 'secondName': { $regex: filterRegex }}, { 'lastName': { $regex: filterRegex }}, { 'title': { $regex: filterRegex }}, { 'jobTitle': { $regex: filterRegex }}]).exec(function(err, count){
+        Person.find({ 'isDeleted': false}).or([{ 'firstName': { $regex: filterRegex }}, { 'secondName': { $regex: filterRegex }}, { 'lastName': { $regex: filterRegex }}, { 'title': { $regex: filterRegex }}, { 'jobTitle': { $regex: filterRegex }}]).populate('groups').limit(take).skip(skip).sort(orderDir == 'asc' ? colNmae : '-'+colNmae).exec(function(err, data) {
+            var dataToSend = {
+                "draw": draw,
+                "recordsTotal": count,
+                "recordsFiltered": count,
+                "data": []
+            };
+            if(err || !data[0]){
+                res.setHeader('Content-Type', 'application/json');
+                res.send(JSON.stringify(dataToSend));
+                return;
+            }
+            data.forEach(function(element){
+                var groups=[];
+                if(!element.groups[0]){
+                    groups.push('-');
+                }
+                else{
+                    element.groups.forEach(function(group){
+                        groups.push(' ' + group.name);
+                    });
+                }
+                if(!element.isDeleted){
+                    dataToSend.data.push([ element._id, element.title, element.firstName, element.secondName, element.lastName, element.jobTitle, groups ]);
+                }
+            });
+            res.setHeader('Content-Type', 'application/json');
+            res.send(JSON.stringify(dataToSend));
+        });
+    });
+});
+
+router.post('/updateUser', checkIfAuthenticated, function(req, res, next) {
+    var id = req.body.id;
+    var updatedPerson = req.body.updatedPerson;
+    Person.findOne({ _id: id }, function (err, doc){
+        if(err){
+        }
+        doc.title = updatedPerson.title;
+        doc.firstName = updatedPerson.firstName;
+        doc.secondName = updatedPerson.secondName;
+        doc.lastName = updatedPerson.lastName;
+        doc.email = updatedPerson.email;
+        doc.jobTitle = updatedPerson.jobTitle;
+        doc.save(function(err){
+            if(!err){
+                res.sendStatus(200);
+            }
+        });
+    });
+});
+
+router.get('/deleteUser/:id', checkIfAuthenticated, function(req, res, next) {
+    var id = req.params.id;
+    Person.update({_id: id}, { isDeleted: true }, function(err){
+        if(!err){
+            res.sendStatus(200);
+        }
+    })
+});
+
+router.post('/groupsList', checkIfAuthenticated, function(req, res, next) {
+    var draw = parseInt(req.body.draw);
+    var skip = parseInt(req.body.start);
+    var take = parseInt(req.body.length);
+    var colMap = ["name", "comment", "people"];
+    var orderCol = req.body['order[0][column]'] - 1;
+    var orderDir = req.body['order[0][dir]'];
+    var colNmae = colMap[orderCol];
+    var filterQuery = req.body['search[value]'];
+    var filterRegex = new RegExp(filterQuery, 'i');
+
+    Group.count({ 'isDeleted': false}).or([{ 'name': { $regex: filterRegex }}, { 'comment': { $regex: filterRegex }}]).exec(function(err, count){
+        Group.find({ 'isDeleted': false}).or([{ 'name': { $regex: filterRegex }}, { 'comment': { $regex: filterRegex }}]).populate('people').limit(take).skip(skip).sort(orderDir == 'asc' ? colNmae : '-'+colNmae).exec(function(err, data) {
+            var dataToSend = {
+                "draw": draw,
+                "recordsTotal": count,
+                "recordsFiltered": count,
+                "data": []
+            };
+            if(err || !data[0]){
+                res.setHeader('Content-Type', 'application/json');
+                res.send(JSON.stringify(dataToSend));
+                return;
+            }
+            data.forEach(function(element){
+                if(!element.isDeleted){
+                    dataToSend.data.push([ element._id, element.name, element.comment, element.people.length ]);
+                }
+            });
+            res.setHeader('Content-Type', 'application/json');
+            res.send(JSON.stringify(dataToSend));
+        });
+    });
+});
+
+router.get('/deleteGroup/:id', checkIfAuthenticated, function(req, res, next) {
+    var id = req.params.id;
+    Group.update({_id: id}, { isDeleted: true }, function(err){
+        if(!err){
+            res.sendStatus(200);
+        }
+    })
+});
+
+router.post('/updateGroup', checkIfAuthenticated, function(req, res, next) {
+    var id = req.body.id;
+    var updatedGroup = req.body.updatedGroup;
+    Group.findOne({ _id: id }, function (err, doc){
+        if(err){
+        }
+        doc.name = updatedGroup.name;
+        doc.comment = updatedGroup.comment;
+        doc.save(function(err){
+            if(!err){
+                res.sendStatus(200);
+            }
+        });
+    });
+});
+
 
 module.exports = router;
 

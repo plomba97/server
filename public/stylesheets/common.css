@@ -46,3 +46,19 @@ body{
 .modal-medium{
     width: 60%;
 }
+
+input#person-id-box,
+input#group-id-box{
+    display: none;
+}
+.table-striped tbody tr.selected  {
+    background-color: #afafaf;
+}
+table{
+    table-layout: fixed;
+}
+td{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}

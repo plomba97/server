@@ -18,10 +18,10 @@ router.get('/add', checkIfAuthenticated, function(req, res, next) {
 
 //Route: /groups/add Method:POST - Puts data from post into database
 router.post('/add', checkIfAuthenticated, function(req, res, next) {
-    console.log(req.body);
     var groupToAdd = new Group({
         name: req.body.name,
-        comment: req.body.comment
+        comment: req.body.comment,
+        isDeleted: false
     });
     groupToAdd.save(function(err, group) {
         res.render('partials/success', {signedUser: req.user, title: 'Групата е успешно добавена:', info: group.name});
@@ -30,7 +30,6 @@ router.post('/add', checkIfAuthenticated, function(req, res, next) {
 
 router.get('/list', checkIfAuthenticated, function(req, res, next) {
     Group.find().exec(function(err, groups) {
-        console.log(req.user);
         res.render('groups/groups-list', {signedUser: req.user, groups: groups });
     });
 });

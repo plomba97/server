@@ -12,19 +12,20 @@ function checkIfAuthenticated(req, res, next){
 }
 
 router.get('/list', checkIfAuthenticated, function(req, res, next) {
+    res.render('people/people-list', {signedUser: req.user, people: {} });
+    /*
     Person.find().populate('groups').exec(function(err, data) {
         Group.find().exec(function(err, groups) {
-            res.render('people/people-list', {signedUser: req.user, people: data });
+
         });
     });
+    */
 });
 
 //Route: /people/ Method:GET - Renders user-list template
 router.get('/addToGroup', checkIfAuthenticated, function(req, res, next) {
-    Person.find().populate('groups').exec(function(err, data) {
-        Group.find().exec(function(err, groups) {
-            res.render('people/people-list-group', {signedUser: req.user, people: data, groups: groups });
-        });
+    Group.find().exec(function(err, groups) {
+        res.render('people/people-list-group', {signedUser: req.user, people: {}, groups: groups });
     });
 });
 
@@ -66,7 +67,8 @@ router.post('/add', checkIfAuthenticated, function(req, res, next) {
         lastName: req.body.lName,
         email: req.body.email,
         jobTitle: req.body.jobTitle,
-        groups: []
+        groups: [],
+        isDeleted: false
         });
     personToAdd.phones.push({number: req.body.phone1, priority: 1, attempts: req.body.phone1try});
     personToAdd.phones.push({number: req.body.phone2, priority: 2, attempts: req.body.phone2try});
