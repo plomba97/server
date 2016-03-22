@@ -8,8 +8,10 @@ $(document).ready(function(){
             url: '/data/usersList',
             type: 'POST'
         },
+        lengthMenu: [[10, 15, 25, 50], [10, 15, 25, 50]],
+        pageLength: 15,
         "rowCallback": function( row, data ) {
-            if ( $.inArray(data.DT_RowId, selected) !== -1 ) {
+            if ( $.inArray(data[0], selected) !== -1 ) {
                 $(row).addClass('selected');
             }
         },

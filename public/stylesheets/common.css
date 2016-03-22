@@ -52,7 +52,7 @@ input#group-id-box{
     display: none;
 }
 .table-striped tbody tr.selected  {
-    background-color: #afafaf;
+    background-color: rgba(203, 203, 203, 1);
 }
 table{
     table-layout: fixed;

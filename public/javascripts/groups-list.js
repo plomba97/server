@@ -7,6 +7,8 @@ $(document).ready(function(){
             url: '/data/groupsList',
             type: 'POST'
         },
+        lengthMenu: [[10, 15, 25, 50], [10, 15, 25, 50]],
+        pageLength: 15,
         "fnDrawCallback": function() {
             $("tbody tr").click(function() {
                 var position = table.row(this).data();
