@@ -7,6 +7,9 @@ $(document).ready(function(){
             url: '/data/groupsList',
             type: 'POST'
         },
+        language: {
+            url: '../resources/Bulgarian.json'
+        },
         lengthMenu: [[10, 15, 25, 50], [10, 15, 25, 50]],
         pageLength: 15,
         "fnDrawCallback": function() {

@@ -8,6 +8,9 @@ $(document).ready(function(){
             url: '/data/usersList',
             type: 'POST'
         },
+        language: {
+            url: '../resources/Bulgarian.json'
+        },
         lengthMenu: [[10, 15, 25, 50], [10, 15, 25, 50]],
         pageLength: 15,
         "rowCallback": function( row, data ) {
