@@ -3,6 +3,10 @@ extends ../partials/layout
 block content
     link(rel='stylesheet', href='../../stylesheets/login-form.css')
     include ../partials/nav-bar
+    if error
+        div.container.text-center
+            div.alert.alert-danger
+                span= error
     div.container.login-form
         div.panel-group
             div.panel.panel-primary

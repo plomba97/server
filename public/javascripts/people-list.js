@@ -20,7 +20,7 @@ $(document).ready(function(){
         "createdRow": function( row, data, dataIndex ) {
             $($(row).children()[5]).attr('title', data[6]);
         }
-});
+    });
 
     $(".save-button ").on('click', function(event){
         var updateData = {};
@@ -67,4 +67,6 @@ $(document).ready(function(){
             }
         });
     });
+
+    
 });

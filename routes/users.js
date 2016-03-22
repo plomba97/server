@@ -33,8 +33,22 @@ router.get('/login', function(req, res, next) {
     res.render('users/login-form', {signedUser: req.user, title: 'Test' });
 });
 
-router.post('/login', passport.authenticate('local', { failureRedirect: '/users/login' }), function(req, res) {
-    res.redirect('/');
+router.post('/login', function(req, res, next) {
+    passport.authenticate('local', function(err, user, info) {
+        if (err) {
+            next(err);
+        }
+        if (!user) {
+            res.render('users/login-form', { signedUser: req.user, error : "Невалиден email/парола!" });
+            return;
+        }
+        req.logIn(user, function(err) {
+            if (err) {
+                console.log('error loging in!!')
+            }
+            res.redirect('/');
+        });
+    })(req, res, next);
 });
 
 router.get('/logout', function(req, res) {
