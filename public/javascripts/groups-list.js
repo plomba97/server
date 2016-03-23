@@ -1,6 +1,6 @@
 $(document).ready(function(){
     var table = $('.data-table').DataTable({
-        columnDefs: [ { orderable: false, targets: [] }, { visible: false, targets: [0] }],
+        columnDefs: [ { orderable: false, targets: [1] }, { visible: false, targets: [0] }],
         processing: true,
         serverSide: true,
         ajax: {
@@ -10,9 +10,9 @@ $(document).ready(function(){
         language: {
             url: '../resources/Bulgarian.json'
         },
-        lengthMenu: [[10, 15, 25, 50], [10, 15, 25, 50]],
+        lengthMenu: [[10, 15, 25, 50, 100, 500], [10, 15, 25, 50, 100, 500]],
         pageLength: 15,
-        "fnDrawCallback": function() {
+        "drawCallback": function() {
             $("tbody tr").click(function() {
                 var position = table.row(this).data();
                 var id = position[0];
@@ -21,18 +21,21 @@ $(document).ready(function(){
                     $('#infoModal').find('.modal-body').html(data);
                 });
             });
-        }
+        },
+        scrollX: '100vh',
+        scrollY: '61vh',
+        scrollCollapse: true
     });
 
     $(".save-button ").on('click', function(event){
+        var id = $('#group-id-box').val();
         var updateData = {};
         updateData.updatedGroup = {};
-        updateData.id = $('#group-id-box').val();
         updateData.updatedGroup.name = $('#name').val();
         updateData.updatedGroup.comment = $('#comment').val();
 
         $.ajax({
-            url : "/data/updateGroup",
+            url : "/data/updateGroup/"+id,
             type: "POST",
             contentType: 'application/json',
             data : JSON.stringify(updateData),

@@ -1,6 +1,6 @@
 $(document).ready(function(){
     var table = $('.data-table').DataTable({
-        columnDefs: [ { orderable: false, targets: [6] }, { visible: false, targets: [0] }],
+        columnDefs: [ { orderable: false, targets: [1, 7] }, { visible: false, targets: [0] }],
         processing: true,
         serverSide: true,
         ajax: {
@@ -10,10 +10,10 @@ $(document).ready(function(){
         language: {
             url: '../resources/Bulgarian.json'
         },
-        lengthMenu: [[10, 15, 25, 50], [10, 15, 25, 50]],
+        lengthMenu: [[10, 15, 25, 50, 100, 500], [10, 15, 25, 50, 100, 500]],
         pageLength: 15,
-        "fnDrawCallback": function() {
-            $("tbody tr").click(function() {
+        "drawCallback": function() {
+ /*           $("tbody tr").click(function() {
                 var position = table.row(this).data(); // getting the clicked row position
                 var id = position[0];
                 $('#infoModal').modal('show');
@@ -21,16 +21,48 @@ $(document).ready(function(){
                     $('#infoModal').find('.modal-body').html(data);
                 });
             });
+*/
+            $("tbody tr").contextMenu({
+                menuSelector: "#contextMenu",
+                menuSelected: function (invokedOn, selectedMenu) {
+                    var position = table.row(invokedOn).data();
+                    var id = position[0];
+                    console.log(selectedMenu.attr('id'), position[0]);
+                    if(selectedMenu.attr('id') == 'menu-details'){
+                        $('#editModal').modal('show');
+                        $.get('/data/personInfo/' + id, function(data){
+                            $('#editModal').find('.modal-body').html(data);
+                        });
+                    }
+                    else if(selectedMenu.attr('id') == 'menu-edit'){
+                        $('#editModal').modal('show');
+                        $.get('/data/personInfo/' + id, function(data){
+                            $('#editModal').find('.modal-body').html(data);
+                        });
+                    }
+                    else if(selectedMenu.attr('id') == 'menu-delete'){
+                        var name = position[2] + " " + position[3] + " "  +position[4] + " " + position[5];
+                        var deleteModal = $('#confirmDeleteModal');
+                        deleteModal.modal('show');
+                        deleteModal.find('#person-id-box').val(id);
+                        deleteModal.find('#warning-text-paragraph').text('Наистина ли искате да изтриете: ');
+                        deleteModal.find('#name').text(name);
+                    }
+                }
+            });
         },
         "createdRow": function( row, data, dataIndex ) {
             $($(row).children()[5]).attr('title', data[6]);
-        }
+        },
+        scrollX: '100vh',
+        scrollY: '61vh',
+        scrollCollapse: true
     });
 
     $(".save-button ").on('click', function(event){
         var updateData = {};
+        var id = $('#person-id-box').val();
         updateData.updatedPerson = {};
-        updateData.id = $('#person-id-box').val();
         updateData.updatedPerson.title = $('#title').val();
         updateData.updatedPerson.firstName = $('#firstName').val();
         updateData.updatedPerson.secondName = $('#secondName').val();
@@ -38,14 +70,14 @@ $(document).ready(function(){
         updateData.updatedPerson.jobTitle = $('#jobTitle').val();
         updateData.updatedPerson.email = $('#email').val();
         $.ajax({
-            url : "/data/updateUser",
+            url : "/data/updateUser/"+id,
             type: "POST",
             contentType: 'application/json',
             data : JSON.stringify(updateData),
             success: function(data, textStatus, jqXHR)
             {
                 table.ajax.reload(null, false);
-                $('#infoModal').modal('hide');
+                $('#editModal').modal('hide');
                 toastr["success"]("Успешно обновихте записа!")
             },
             error: function (jqXHR, textStatus, errorThrown)
@@ -63,7 +95,7 @@ $(document).ready(function(){
             success: function(data, textStatus, jqXHR)
             {
                 table.ajax.reload(null, false);
-                $('#infoModal').modal('hide');
+                $('#confirmDeleteModal').modal('hide');
                 toastr["success"]("Успешно изтрихте записа!")
             },
             error: function (jqXHR, textStatus, errorThrown)

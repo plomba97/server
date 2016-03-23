@@ -1,7 +1,7 @@
 $(document).ready(function(){
     var selected = [];
     var table = $('.data-table').DataTable({
-        columnDefs: [ { orderable: false, targets: [6] }, { visible: false, targets: [0] }],
+        columnDefs: [ { orderable: false, targets: [1, 7] }, { visible: false, targets: [0] }],
         processing: true,
         serverSide: true,
         ajax: {
@@ -11,14 +11,14 @@ $(document).ready(function(){
         language: {
             url: '../resources/Bulgarian.json'
         },
-        lengthMenu: [[10, 15, 25, 50], [10, 15, 25, 50]],
+        lengthMenu: [[10, 15, 25, 50, 100, 500], [10, 15, 25, 50, 100, 500]],
         pageLength: 15,
         "rowCallback": function( row, data ) {
             if ( $.inArray(data[0], selected) !== -1 ) {
                 $(row).addClass('selected');
             }
         },
-        "fnDrawCallback": function() {
+        "drawCallback": function() {
             $("tbody tr").click(function () {
                 console.log('fired');
                 var position = table.row(this).data(); // getting the clicked row position
@@ -35,7 +35,10 @@ $(document).ready(function(){
         },
         "createdRow": function( row, data, dataIndex ) {
             $($(row).children()[5]).attr('title', data[6]);
-        }
+        },
+        scrollX: '100vh',
+        scrollY: '61vh',
+        scrollCollapse: true
     });
     $('#add-button').on('click', function(){
         var object={};

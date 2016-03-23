@@ -6,18 +6,9 @@ block content
     link(rel='stylesheet', href='../../stylesheets/dataTables.bootstrap.min.css')
     link(rel='stylesheet', href='../../stylesheets/table.css')
     include ../partials/nav-bar
-    #infoModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel')
-        .modal-dialog(role='document')
-            .modal-content
-                .modal-header
-                    button.close(type='button', data-dismiss='modal', aria-label='Close')
-                        span(aria-hidden='true') ×
-                    h4#myModalLabel.modal-title Информация за контакта:
-                .modal-body
-                .modal-footer
-                    button.btn.btn-default(type='button', data-dismiss='modal') Затвори
-                    button.btn.btn-danger.delete-button Изтрий
-                    button.btn.btn-success.save-button Запази
+    include ../partials/context-menu.jade
+    include ../partials/person-edit-modal
+    include ../partials/confirm-delete-modal.jade
     div.form-horizontal
         div.container
             div.panel-group
@@ -28,6 +19,7 @@ block content
                             thead
                                 tr
                                     th.id-col
+                                    th.number-col №
                                     th.title-col Титла
                                     th.name-col Име
                                     th.name-col Презиме

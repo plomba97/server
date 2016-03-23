@@ -4,6 +4,7 @@ block content
     script(type='text/javascript', src='../../javascripts/groups-list.js')
     script(type='text/javascript', src='../../javascripts/dataTables.bootstrap.min.js')
     link(rel='stylesheet', href='../../stylesheets/dataTables.bootstrap.min.css')
+    link(rel='stylesheet', href='../../stylesheets/table.css')
     include ../partials/nav-bar
     #infoModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel')
         .modal-dialog(role='document')
@@ -27,6 +28,7 @@ block content
                             thead
                                 tr
                                     th.id-col
+                                    th.number-col №
                                     th.col-xs-4 Име
                                     th Коментар
                                     th Участници
