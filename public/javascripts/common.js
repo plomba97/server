@@ -23,10 +23,12 @@ $(document).ready(function(){
             $(this).on("contextmenu", function (outterEvent) {
                 // return native menu if pressing control
                 if (outterEvent.ctrlKey) return;
+
                 //open menu
                 var $menu = $(settings.menuSelector)
                     .data("invokedOn", $(outterEvent))
-                    .show()
+                    .hide()
+                    .slideDown(100)
                     .css({
                         position: "absolute",
                         left: getMenuPosition(outterEvent.clientX, 'width', 'scrollLeft'),
@@ -34,7 +36,7 @@ $(document).ready(function(){
                     })
                     .off('click')
                     .on('click', 'a', function (e) {
-                        $menu.hide();
+                        $menu.slideUp(100);
                         var $invokedOn = $(outterEvent.target).parent();
                         var $selectedMenu = $(e.target);
 
@@ -43,8 +45,8 @@ $(document).ready(function(){
                 return false;
             });
             //make sure menu closes on any click
-            $('body').click(function () {
-                $(settings.menuSelector).hide();
+            $('body').on('click contextmenu mouseleave', function () {
+                $(settings.menuSelector).slideUp(100);
             });
         });
 
@@ -62,4 +64,19 @@ $(document).ready(function(){
         }
 
     };
+
+    var dropdown = $('.dropdown');
+    // ADD SLIDEDOWN ANIMATION TO DROPDOWN //
+    dropdown.on('show.bs.dropdown', function(e){
+        $(this).find('.dropdown-menu').first().stop(true, true).slideDown(100);
+    });
+
+    // ADD SLIDEUP ANIMATION TO DROPDOWN //
+    dropdown.on('hide.bs.dropdown', function(e){
+        $(this).find('.dropdown-menu').first().stop(true, true).slideUp(100);
+    });
+
+    $('body').on('contextmenu mouseleave', function () {
+        $('.dropdown.open .dropdown-toggle').dropdown('toggle');
+    });
 });

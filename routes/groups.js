@@ -11,12 +11,10 @@ function checkIfAuthenticated(req, res, next){
     }
 }
 
-//Route: /groups/add Method:GET - Renders the add-person template
 router.get('/add', checkIfAuthenticated, function(req, res, next) {
     res.render('groups/add-group', {signedUser: req.user});
 });
 
-//Route: /groups/add Method:POST - Puts data from post into database
 router.post('/add', checkIfAuthenticated, function(req, res, next) {
     var groupToAdd = new Group({
         name: req.body.name,
@@ -33,7 +31,6 @@ router.get('/list', checkIfAuthenticated, function(req, res, next) {
         res.render('groups/groups-list', {signedUser: req.user, groups: groups });
     });
 });
-
 
 module.exports = router;
 

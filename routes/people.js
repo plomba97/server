@@ -22,14 +22,12 @@ router.get('/list', checkIfAuthenticated, function(req, res, next) {
     */
 });
 
-//Route: /people/ Method:GET - Renders user-list template
 router.get('/addToGroup', checkIfAuthenticated, function(req, res, next) {
-    Group.find().exec(function(err, groups) {
+    Group.find({'isDeleted': false}).exec(function(err, groups) {
         res.render('people/people-list-group', {signedUser: req.user, people: {}, groups: groups });
     });
 });
 
-//Route: /people/ Method:POST - Gets data about people to add in group
 router.post('/addToGroup', checkIfAuthenticated, function(req, res, next) {
     console.log(req.body);
     var groupId = req.body.group;
@@ -53,12 +51,10 @@ router.post('/addToGroup', checkIfAuthenticated, function(req, res, next) {
     });
 });
 
-//Route: /people/add/person Method:GET - Renders the add-person template
 router.get('/add', checkIfAuthenticated, function(req, res, next) {
     res.render('people/add-person', {signedUser: req.user});
 });
 
-//Route: /people/add/person Method:POST - Receives post request with the data and adds it to db
 router.post('/add', checkIfAuthenticated, function(req, res, next) {
     var personToAdd = new Person({
         title: req.body.title,
@@ -89,7 +85,5 @@ router.post('/add', checkIfAuthenticated, function(req, res, next) {
     });
 
 });
-
-
 
 module.exports = router;

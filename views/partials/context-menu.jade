@@ -1,8 +1,15 @@
-ul#contextMenu.dropdown-menu(role='menu', style='display:none')
+ul#contextMenu.dropdown-menu(role='menu')
     li
-        a#menu-details(tabindex='-1', href='#') Детайли
+        a.menu-details(tabindex='-1', href='#')
+            span.menu-details Детайли
+            i.menu-details.glyphicon.glyphicon-search.pull-right
     li
-        a#menu-edit(tabindex='-1', href='#') Редактирай
+        a.menu-edit(tabindex='-1', href='#')
+            span.menu-edit Редактирай
+            i.menu-edit.glyphicon.glyphicon-pencil.pull-right
     li.divider
     li
-        a#menu-delete(tabindex='-1', href='#') Изтрий
+        a.menu-delete(tabindex='-1', href='#')
+            span.menu-delete Изтрий
+            i.menu-delete.glyphicon.glyphicon-trash.pull-right
+

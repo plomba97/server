@@ -1,4 +1,8 @@
 $(document).ready(function(){
+    $('.selectpicker').selectpicker({
+        size: 10
+    });
+
     var selected = [];
     var table = $('.data-table').DataTable({
         columnDefs: [ { orderable: false, targets: [1, 7] }, { visible: false, targets: [0] }],
@@ -20,7 +24,6 @@ $(document).ready(function(){
         },
         "drawCallback": function() {
             $("tbody tr").click(function () {
-                console.log('fired');
                 var position = table.row(this).data(); // getting the clicked row position
                 var id = position[0];
                 var index = $.inArray(id, selected);
@@ -34,11 +37,8 @@ $(document).ready(function(){
             } );
         },
         "createdRow": function( row, data, dataIndex ) {
-            $($(row).children()[5]).attr('title', data[6]);
-        },
-        scrollX: '100vh',
-        scrollY: '61vh',
-        scrollCollapse: true
+            $($(row).children()[6]).tooltip({title: data[7], placement: "top", viewport: {selector: "table", padding: 0}});
+        }
     });
     $('#add-button').on('click', function(){
         var object={};
@@ -49,22 +49,26 @@ $(document).ready(function(){
         object.group = group;
         console.log(object);
 
-        $.ajax({
-            url : "/people/addToGroup",
-            type: "POST",
-            contentType: 'application/json',
-            data : JSON.stringify(object),
-            success: function(data, textStatus, jqXHR)
-            {
-                table.ajax.reload(null, false);
-                toastr["success"]("Успешно добавяне в група!");
-                selected = [];
-            },
-            error: function (jqXHR, textStatus, errorThrown)
-            {
+        if(!object.ids[0]){
+            toastr["error"]("Моля изберете контакти за добавяне!");
+        } else{
+            $.ajax({
+                url : "/people/addToGroup",
+                type: "POST",
+                contentType: 'application/json',
+                data : JSON.stringify(object),
+                success: function(data, textStatus, jqXHR)
+                {
+                    table.ajax.reload(null, false);
+                    toastr["success"]("Успешно добавяне в група!");
+                    selected = [];
+                },
+                error: function (jqXHR, textStatus, errorThrown)
+                {
 
-            }
-        });
+                }
+            });
+        }
     });
     $('td').each(function(index){
         console.log("asds");

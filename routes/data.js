@@ -4,8 +4,8 @@ var Person = require('../data-models/person-model.js');
 var Group = require('../data-models/group-model.js');
 var CallsLog = require('../data-models/calls-data-model.js');
 var Account = require('../data-models/account-model');
-var router = express.Router();
 var callManager = require('../services/asterisk/calls-manager');
+var router = express.Router();
 
 function checkIfAuthenticated(req, res, next){
     if(req.isAuthenticated()){
@@ -188,30 +188,6 @@ router.post('/updateUser/:id', checkIfAuthenticated, function(req, res, next) {
     });
 });
 
-router.get('/deleteUser/:id', checkIfAuthenticated, function(req, res, next) {
-    var id = req.params.id;
-    Person.update({_id: id}, { isDeleted: true }, function(err){
-        if(!err){
-            res.sendStatus(200);
-        }
-        else{
-            res.sendStatus(404);
-        }
-    })
-});
-
-router.get('/deleteGroup/:id', checkIfAuthenticated, function(req, res, next) {
-    var id = req.params.id;
-    Group.update({_id: id}, { isDeleted: true }, function(err){
-        if(!err){
-            res.sendStatus(200);
-        }
-        else{
-            res.sendStatus(404);
-        }
-    })
-});
-
 router.post('/updateGroup/:id', checkIfAuthenticated, function(req, res, next) {
     var id = req.params.id;
     var updatedGroup = req.body.updatedGroup;
@@ -231,6 +207,59 @@ router.post('/updateGroup/:id', checkIfAuthenticated, function(req, res, next) {
     });
 });
 
+router.get('/deleteUser/:id', checkIfAuthenticated, function(req, res, next) {
+    var id = req.params.id;
+    Person.findOne({_id: id}, function(err, doc){
+        if(err){
+            res.sendStatus(404);
+        }
+        var groupIds = doc.groups;
+        var personId = doc._id;
+
+        Group.update({_id : {"$in":groupIds}}, {$pull: { people: personId }}, {multi: true} , function(err,data) {
+            if(err){
+                res.sendStatus(404);
+            }
+            doc.isDeleted = true;
+            doc.groups = [];
+            doc.save(function(err){
+                if(!err){
+                    res.sendStatus(200);
+                }
+                else{
+                    res.sendStatus(404);
+                }
+            });
+        });
+    })
+});
+
+router.get('/deleteGroup/:id', checkIfAuthenticated, function(req, res, next) {
+    var id = req.params.id;
+    Group.findOne({_id: id}).exec(function(err, doc){
+        if(err){
+            res.sendStatus(404);
+        }
+        var personIds = doc.people;
+        var groupId = doc._id;
+
+        Person.update({_id : {"$in":personIds}}, {$pull: { groups: groupId }}, {multi: true} , function(err,data) {
+            if(err){
+                res.sendStatus(404);
+            }
+            doc.isDeleted = true;
+            doc.people = [];
+            doc.save(function(err){
+                if(!err){
+                    res.sendStatus(200);
+                }
+                else{
+                    res.sendStatus(404);
+                }
+            });
+        });
+    });
+});
 
 module.exports = router;
 

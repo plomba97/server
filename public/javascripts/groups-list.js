@@ -13,22 +13,39 @@ $(document).ready(function(){
         lengthMenu: [[10, 15, 25, 50, 100, 500], [10, 15, 25, 50, 100, 500]],
         pageLength: 15,
         "drawCallback": function() {
-            $("tbody tr").click(function() {
-                var position = table.row(this).data();
-                var id = position[0];
-                $('#infoModal').modal('show');
-                $.get('/data/groupInfo/' + id, function(data){
-                    $('#infoModal').find('.modal-body').html(data);
-                });
+            $("tbody tr").contextMenu({
+                menuSelector: "#contextMenu",
+                menuSelected: function (invokedOn, selectedMenu) {
+                    var position = table.row(invokedOn).data();
+                    var id = position[0];
+                    if(selectedMenu.hasClass('menu-details')){
+                        $('#groupEditModal').modal('show');
+                        $.get('/data/groupInfo/' + id, function(data){
+                            $('#groupEditModal').find('.modal-body').html(data);
+                        });
+                    }
+                    else if(selectedMenu.hasClass('menu-edit')){
+                        $('#groupEditModal').modal('show');
+                        $.get('/data/groupInfo/' + id, function(data){
+                            $('#groupEditModal').find('.modal-body').html(data);
+                        });
+                    }
+                    else if(selectedMenu.hasClass('menu-delete')){
+                        var name = position[2];
+                        var deleteModal = $('#confirmDeleteModal');
+                        deleteModal.modal('show');
+                        deleteModal.find('#id-box').val(id);
+                        deleteModal.find('#warning-text-paragraph').text('Наистина ли искате да изтриете: ');
+                        deleteModal.find('#name').text(name);
+                        console.log('delete');
+                    }
+                }
             });
-        },
-        scrollX: '100vh',
-        scrollY: '61vh',
-        scrollCollapse: true
+        }
     });
 
     $(".save-button ").on('click', function(event){
-        var id = $('#group-id-box').val();
+        var id = $('#id-box').val();
         var updateData = {};
         updateData.updatedGroup = {};
         updateData.updatedGroup.name = $('#name').val();
@@ -42,7 +59,7 @@ $(document).ready(function(){
             success: function(data, textStatus, jqXHR)
             {
                 table.ajax.reload(null, false);
-                $('#infoModal').modal('hide');
+                $('#groupEditModal').modal('hide');
                 toastr["success"]("Успешно обновихте записа!")
             },
             error: function (jqXHR, textStatus, errorThrown)
@@ -53,14 +70,15 @@ $(document).ready(function(){
     });
 
     $(".delete-button ").on('click', function(event){
-        var id = $('#group-id-box').val();
+        var id = $('#id-box').val();
+        console.log("the id" + id);
         $.ajax({
             url : "/data/deleteGroup/" + id,
             type: "GET",
             success: function(data, textStatus, jqXHR)
             {
                 table.ajax.reload(null, false);
-                $('#infoModal').modal('hide');
+                $('#confirmDeleteModal').modal('hide');
                 toastr["success"]("Успешно изтрихте записа!")
             },
             error: function (jqXHR, textStatus, errorThrown)

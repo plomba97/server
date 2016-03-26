@@ -1,14 +1,11 @@
-#confirmDeleteModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel')
+#groupEditModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel')
     .modal-dialog(role='document')
         .modal-content
             .modal-header
                 button.close(type='button', data-dismiss='modal', aria-label='Close')
                     span(aria-hidden='true') ×
-                h4#myModalLabel.modal-title Внимание!
+                h4#myModalLabel.modal-title Информация за групата:
             .modal-body
-                input#id-box(type='text' name='')
-                p#warning-text-paragraph
-                strong#name
             .modal-footer
                 button.btn.btn-default(type='button', data-dismiss='modal') Затвори
-                button.btn.btn-danger.delete-button Изтрий
+                button.btn.btn-success.save-button Запази

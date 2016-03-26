@@ -3,7 +3,7 @@ table th.checkbox-col{
 }
 
 table th.name-col{
-	width: 17%;
+	width: 18%;
 }
 
 table th.job-col{
@@ -11,9 +11,12 @@ table th.job-col{
 }
 
 table th.number-col{
-	width: 10%;
+	width: 8%;
 }
 
 table th.title-col{
 	width: 13%;
+}
+table th.groups-col{
+	width: 40%;
 }

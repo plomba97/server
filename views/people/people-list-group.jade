@@ -21,15 +21,15 @@ block content
                                     th.name-col Име
                                     th.name-col Презиме
                                     th.name-col Фамилия
-                                    th Длъжност
+                                    th.job-col Длъжност
                                     th.groups-col Групи
                     div.panel-footer.panel-default
                         div.row
                             div.col-lg-12
                                 div.col-lg-2
                                     label.control-label(for='group-select') Добавяне в група:
-                                div.col-lg-4
-                                    select.form-control(id='group-select', name='Group')
+                                div.col-lg-8
+                                    select.selectpicker.show-tick(id='group-select', name='Group' data-live-search="true" data-width="300px")
                                         each group in groups
                                             option(value= group.id)= group.name
                                 div

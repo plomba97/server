@@ -6,10 +6,10 @@ var Person = require('../data-models/person-model.js');
 var Group = require('../data-models/group-model.js');
 var CallsLog = require('../data-models/calls-data-model.js');
 var Recording = require('../data-models/recording-model.js');
-var router = express.Router();
 var ariInit = require('../ari/ari-init.js');
 var call = require('../services/asterisk/call.js');
 var callManager = require('../services/asterisk/calls-manager');
+var router = express.Router();
 
 function checkIfAuthenticated(req, res, next){
     if(req.isAuthenticated()){
@@ -18,7 +18,7 @@ function checkIfAuthenticated(req, res, next){
         res.redirect("/users/login");
     }
 }
-//Route: /inform Method:GET - Renders groups
+
 router.get('/', checkIfAuthenticated, function(req, res, next) {
     Group.find().exec(function(err, groups) {
         Recording.find().exec(function(err, recordings) {
@@ -28,7 +28,6 @@ router.get('/', checkIfAuthenticated, function(req, res, next) {
     });
 });
 
-//Route: /inform Method:Post - Renders groups
 router.post('/', checkIfAuthenticated, function(req, res, next) {
     console.log(req.body);
     var recordingId = req.body.recording;
@@ -57,7 +56,6 @@ router.post('/', checkIfAuthenticated, function(req, res, next) {
         });
 });
 
-//Route: /inform/callsData Method:GET - Renders groups
 router.get('/calls', checkIfAuthenticated, function(req, res, next) {
     res.render('inform/current-calls', {signedUser: req.user});
 });
